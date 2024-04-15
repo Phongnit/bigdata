@@ -19,8 +19,10 @@ return new class extends Migration
             $table->string('description');
             $table->timestamp('create_at');
             $table->timestamp('update_at');
-            $table->integer('fld_id');
-            $table->integer('cty_id');
+            $table->unsignedBigInteger('fld_id');
+            $table->foreign('fld_id')->references('id')->on('table_field');
+            $table->unsignedBigInteger('cty_id');
+            $table->foreign('cty_id')->references('id')->on('table_country');
             $table->timestamps();
         });
     }
