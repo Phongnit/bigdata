@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Field extends Model
 {
     use HasFactory;
+    protected $table = 'table_field';
+
+    protected $fillable = [
+        'name',
+    ];
 }

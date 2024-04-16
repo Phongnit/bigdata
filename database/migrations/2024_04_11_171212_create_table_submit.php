@@ -17,8 +17,6 @@ return new class extends Migration
             $table->string('phone')->unique();
             $table->string('email')->unique();
             $table->string('description');
-            $table->timestamp('create_at');
-            $table->timestamp('update_at');
             $table->unsignedBigInteger('fld_id');
             $table->foreign('fld_id')->references('id')->on('table_field');
             $table->unsignedBigInteger('cty_id');

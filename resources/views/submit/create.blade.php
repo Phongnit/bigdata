@@ -35,6 +35,19 @@
                             <div class="card-body">
                                 <form action="" method="post">
                                     @csrf
+
+                                    <div class="form-group">
+                                        <label>Họ tên:</label>
+
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                            </div>
+                                            <input type="text" name="name" class="form-control" >
+                                        </div>
+                                        <!-- /.input group -->
+                                    </div>
+
                                     <!-- Date dd/mm/yyyy -->
                                     <div class="form-group">
                                         <label>Ngày tạo:</label>
@@ -86,7 +99,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fas fa-comment"></i></span>
                                             </div>
-                                            <input type="text" name="message" class="form-control">
+                                            <input type="text" name="description" class="form-control">
                                         </div>
                                         <!-- /.input group -->
                                     </div>
@@ -99,7 +112,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fas fa-cog"></i></span>
                                             </div>
-                                            <input type="text" name="field" class="form-control">
+                                            <input type="text" name="fld_id" class="form-control">
                                         </div>
                                         <!-- /.input group -->
                                     </div>
@@ -112,7 +125,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fa fa-globe" aria-hidden="true"></i></span>
                                             </div>
-                                            <input type="text" name="country" class="form-control">
+                                            <input type="text" name="cty_id" class="form-control">
                                         </div>
                                         <!-- /.input group -->
                                     </div>

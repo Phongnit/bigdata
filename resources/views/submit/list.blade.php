@@ -30,7 +30,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">DataTable</h3>
+                                <a class="button btn-success" href="{{ route('submit.create')}}">Thêm mới</a>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
@@ -49,70 +49,28 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Lê Thị Thu</td>
-                                            <td>0123456789</td>
-                                            <td>thu@gmail.com</td>
-                                            <td>Tôi muốn tìm hiểu xuất khẩu lao động úc</td>
-                                            <td>XKLĐ
-                                            <td>Úc</td>
-                                            <td>
-                                                <ul>
-                                                    <li>Xem</li>
-                                                    <li>Chỉnh sửa</li>
-                                                    <li>Xóa</li>
-                                                </ul>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Lê Thị Thu</td>
-                                            <td>0123456789</td>
-                                            <td>thu@gmail.com</td>
-                                            <td>Tôi muốn tìm hiểu xuất khẩu lao động úc</td>
-                                            <td>XKLĐ
-                                            <td>Úc</td>
-                                            <td>
-                                                <ul>
-                                                    <li>Xem</li>
-                                                    <li>Chỉnh sửa</li>
-                                                    <li>Xóa</li>
-                                                </ul>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Lê Thị Thu</td>
-                                            <td>0123456789</td>
-                                            <td>thu@gmail.com</td>
-                                            <td>Tôi muốn tìm hiểu xuất khẩu lao động úc</td>
-                                            <td>XKLĐ
-                                            <td>Úc</td>
-                                            <td>
-                                                <ul>
-                                                    <li>Xem</li>
-                                                    <li>Chỉnh sửa</li>
-                                                    <li>Xóa</li>
-                                                </ul>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td>Lê Thị Thu</td>
-                                            <td>0123456789</td>
-                                            <td>thu@gmail.com</td>
-                                            <td>Tôi muốn tìm hiểu xuất khẩu lao động úc</td>
-                                            <td>XKLĐ
-                                            <td>Úc</td>
-                                            <td>
-                                                <ul>
-                                                    <li>Xem</li>
-                                                    <li>Chỉnh sửa</li>
-                                                    <li>Xóa</li>
-                                                </ul>
-                                            </td>
-                                        </tr>
+                                        @foreach ($submits as $submit)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $submit->name }}</td>
+                                                <td>{{ $submit->phone }}</td>
+                                                <td>{{ $submit->email }}</td>
+                                                <td>{{ $submit->description }}</td>
+                                                <td>{{ $submit->field->name }}</td>
+                                                <td>{{ $submit->country->name }}</td>
+                                                <td>
+                                                    <ul
+                                                        style="display: flex; list-style: none; justify-content: space-evenly; padding: 0;">
+                                                        <li><a href="{{ route('submit.show', ['id' => $submit->id]) }}"><i  style="color: green;"
+                                                                    class="fa fa-eye" aria-hidden="true"></i></a></li>
+                                                        <li><a href="{{ route('submit.edit', ['id' => $submit->id]) }}"><i  style= "color: blue;"
+                                                                    class="fa fa-wrench" aria-hidden="true"></i></a></li>
+                                                        <li><a href="{{ route('submit.delete', ['id' => $submit->id]) }}" onclick="return confirm('Bạn có chắc muốn xóa không?');"><i  style="color: red;"
+                                                                    class="fa fa-trash" aria-hidden="true"></i></a></li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                         </tfoot>
                                 </table>
                             </div>

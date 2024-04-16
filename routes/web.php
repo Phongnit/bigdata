@@ -22,9 +22,10 @@ Route::prefix('submit')->group(function () {
     Route::get('/',[SubmitController::class,'list'])->name('submit.list');
     Route::get('/create',[SubmitController::class,'create'])->name('submit.create');
     Route::post('/create',[SubmitController::class,'store']);
+    Route::get('/show/{id}',[SubmitController::class,'show'])->name('submit.show');
     Route::get('/edit/{id}',[SubmitController::class,'edit'])->name('submit.edit');
     Route::put('/edit/{id}',[SubmitController::class,'update']);
-    Route::delete('/delete/{id}',[SubmitController::class,'delete'])->name('submit.delete');
+    Route::get('/delete/{id}',[SubmitController::class,'delete'])->name('submit.delete');
 });
 
 
