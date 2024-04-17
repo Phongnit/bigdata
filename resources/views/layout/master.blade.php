@@ -452,6 +452,7 @@
     <script src="{{ asset('dist') }}/js/adminlte.min.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('dist') }}/js/demo.js"></script>
+    <script src="{{ asset('plugins') }}/summernote/summernote-bs4.min.js"></script>
     <!-- Page specific script -->
     <script>
         $(function() {
@@ -598,6 +599,12 @@
         }
         // DropzoneJS Demo Code End
     </script>
+    <script>
+        $(function () {
+          //Add text editor
+          $('#compose-textarea').summernote()
+        })
+      </script>
 </body>
 
 </html>

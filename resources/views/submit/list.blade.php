@@ -102,9 +102,9 @@
                                     </tbody>
                                 </table>
                                 <div id="pagination-container">
-                                    <button onclick="previousPage()">Trang trước</button>
+                                    <button onclick="previousPage()">&lt;</button>
                                     <span id="pagination"></span>
-                                    <button onclick="nextPage()">Trang tiếp theo</button>
+                                    <button onclick="nextPage()">&gt;</button>
                                 </div>
                                 
                                 <script>

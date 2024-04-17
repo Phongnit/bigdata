@@ -8,3 +8,21 @@ a.button {
 select#field,select#country {
     padding: 3px;
 }
+div#pagination-container {
+    text-align: end;
+    padding: 15px;
+}
+div#pagination-container button {
+    background: #fff;
+    border: 2px solid #EEEEEE;
+    border-radius: 99px;
+    aspect-ratio: 1/1;
+    min-width: 35px;
+    min-height: 35px;
+    margin-right: 5px;
+}
+div#pagination-container button.active, div#pagination-container button:hover {
+    background-color: #4DA1FA;
+    border-color: #4DA1FA;
+    color: #fff;
+}

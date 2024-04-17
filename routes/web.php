@@ -38,4 +38,5 @@ Route::prefix('mailbox')->group(function () {
      Route::delete('/delete/{id}',[MailController::class,'delete'])->name('mailbox.delete');
 });
 
-
+Route::get('emails/create', [MailController::class, 'create'])->name('emails.create');
+Route::post('emails', [MailController::class, 'store'])->name('emails.store');
