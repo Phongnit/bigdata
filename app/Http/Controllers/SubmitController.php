@@ -12,10 +12,39 @@ class SubmitController extends Controller
 {
     public function list(Request $request)
     {
-        $submits = Submit::orderBy('id', 'desc')->paginate(10);
+        // $submits = Submit::orderBy('id', 'desc')->paginate(10);
         // $field = Field::all();
-        // $country = Country::all();
-        return view('submit.list', compact('submits'));
+        // return view('submit.list', compact('submits'));
+
+        $search = $request->input('search');
+        $filters = $request->only(['country', 'field']);
+        // $submits = Submit::orderBy('id', 'desc');
+        $countries = Country::all();
+        $fields = Field::all();
+        $submits = Submit::query();
+
+        if ($search) {
+            $submits->where(function ($query) use ($search) {
+                $query->where('name', 'LIKE', "%$search%")
+                    ->orWhere('email', 'LIKE', "%$search%")
+                    ->orWhere('phone', 'LIKE', "%$search%");
+            });
+        }
+        if (isset($filters['country'])) {
+            $submits->where('cty_id', $filters['country']);
+        }
+        if (isset($filters['field'])) {
+            $submits->where('fld_id', $filters['field']);
+        }
+
+        $submits = $submits->get();
+        // $submits = $submits->paginate(5);
+
+        if ($request->ajax()) {
+            return view('submit.list', compact('submits', 'countries', 'fields'));
+        }
+
+        return view('submit.list', compact('submits', 'countries', 'fields'));
     }
     public function create()
     {
@@ -39,7 +68,7 @@ class SubmitController extends Controller
     public function show($id)
     {
         $submits = Submit::find($id);
-        return view('submit.detail',compact('submits'));
+        return view('submit.detail', compact('submits'));
     }
     public function edit(Request $request, $id)
     {

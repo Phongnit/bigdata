@@ -2,3 +2,9 @@ a.button {
     padding: 5px 15px;
     border-radius: 5px;
 }
+.card-body::after, .card-footer::after, .card-header::after{
+    display: none;
+}
+select#field,select#country {
+    padding: 3px;
+}
