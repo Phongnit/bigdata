@@ -32,29 +32,41 @@
                             <div class="card-header"
                                 style="display: flex; flex-wrap: wrap; justify-content: space-between;">
                                 <a class="button btn-success" href="{{ route('submit.create') }}">Thêm mới</a>
-                                <form id="search-form" method="GET" style="right: 0;">
-                                    <input type="text" name="search" placeholder="Tìm kiếm"
-                                        value="{{ request('search') }}">
-                                    <select id="country" name="country">
-                                        <option value="">Quốc gia</option>
-                                        @foreach ($countries as $country)
-                                            <option value="{{ $country->id }}"
-                                                {{ ($filters['country'] ?? '') == $country->id ? 'selected' : '' }}>
-                                                {{ $country->name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    <select id="field" name="field">
-                                        <option value="">Lĩnh vực</option>
-                                        @foreach ($fields as $field)
-                                            <option value="{{ $field->id }}"
-                                                {{ ($filters['field'] ?? '') == $field->id ? 'selected' : '' }}>
-                                                {{ $field->name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    <button type="submit">Tìm kiếm</button>
-                                </form>
+
+                                <div id="filter">
+                                    <div class="amount-flt">
+                                        <label for="itemsPerPage">Số phần tử trên mỗi trang:</label>
+                                        <select id="itemsPerPage" onchange="changeItemsPerPage()">
+                                            <option value="10">10</option>
+                                            <option value="20">20</option>
+                                            <option value="50">50</option>
+                                            <option value="100">100</option>
+                                        </select>
+                                    </div>
+                                    <form id="search-form" method="GET" style="right: 0;">
+                                        <input type="text" name="search" placeholder="Tìm kiếm"
+                                            value="{{ request('search') }}">
+                                        <select id="country" name="country">
+                                            <option value="">Quốc gia</option>
+                                            @foreach ($countries as $country)
+                                                <option value="{{ $country->id }}"
+                                                    {{ ($filters['country'] ?? '') == $country->id ? 'selected' : '' }}>
+                                                    {{ $country->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        <select id="field" name="field">
+                                            <option value="">Lĩnh vực</option>
+                                            @foreach ($fields as $field)
+                                                <option value="{{ $field->id }}"
+                                                    {{ ($filters['field'] ?? '') == $field->id ? 'selected' : '' }}>
+                                                    {{ $field->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        <button type="submit">Tìm kiếm</button>
+                                    </form>
+                                </div>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
@@ -106,43 +118,44 @@
                                     <span id="pagination"></span>
                                     <button onclick="nextPage()">&gt;</button>
                                 </div>
-                                
+
                                 <script>
                                     var currentPage = 1;
                                     var recordsPerPage = 10;
                                     var rows = document.getElementById('example1').getElementsByTagName('tbody')[0].rows;
                                     var totalRecords = rows.length;
                                     var totalPages = Math.ceil(totalRecords / recordsPerPage);
-                                
+
                                     showPage(currentPage);
-                                
+
                                     function showPage(page) {
                                         currentPage = page;
                                         var start = (page - 1) * recordsPerPage;
                                         var end = start + recordsPerPage;
-                                
+
                                         for (var i = 0; i < totalRecords; i++) {
                                             rows[i].style.display = 'none';
                                         }
-                                
+
                                         for (var j = start; j < end; j++) {
                                             if (rows[j]) {
                                                 rows[j].style.display = 'table-row';
                                             }
                                         }
-                                
+
                                         var paginationContainer = document.getElementById('pagination');
                                         paginationContainer.innerHTML = '';
-                                
+
                                         var paginationHTML = '';
-                                
+
                                         if (totalPages <= 5) {
                                             for (var k = 1; k <= totalPages; k++) {
-                                                paginationHTML += '<button onclick="showPage(' + k + ')" ' + (k === currentPage ? 'class="active"' : '') + '>' + k + '</button>';
+                                                paginationHTML += '<button onclick="showPage(' + k + ')" ' + (k === currentPage ? 'class="active"' :
+                                                    '') + '>' + k + '</button>';
                                             }
                                         } else {
                                             var startPage, endPage;
-                                
+
                                             if (currentPage <= 3) {
                                                 startPage = 1;
                                                 endPage = 5;
@@ -153,33 +166,41 @@
                                                 startPage = currentPage - 2;
                                                 endPage = currentPage + 2;
                                             }
-                                
+
                                             for (var k = startPage; k <= endPage; k++) {
-                                                paginationHTML += '<button onclick="showPage(' + k + ')" ' + (k === currentPage ? 'class="active"' : '') + '>' + k + '</button>';
+                                                paginationHTML += '<button onclick="showPage(' + k + ')" ' + (k === currentPage ? 'class="active"' :
+                                                    '') + '>' + k + '</button>';
                                             }
-                                
+
                                             if (currentPage > 3) {
                                                 paginationHTML = '<button onclick="showPage(1)">1</button><span>...</span>' + paginationHTML;
                                             }
-                                
+
                                             if (currentPage < totalPages - 2) {
-                                                paginationHTML += '<span>...</span><button onclick="showPage(' + totalPages + ')">' + totalPages + '</button>';
+                                                paginationHTML += '<span>...</span><button onclick="showPage(' + totalPages + ')">' + totalPages +
+                                                    '</button>';
                                             }
                                         }
-                                
+
                                         paginationContainer.innerHTML = paginationHTML;
                                     }
-                                
+
                                     function previousPage() {
                                         if (currentPage > 1) {
                                             showPage(currentPage - 1);
                                         }
                                     }
-                                
+
                                     function nextPage() {
                                         if (currentPage < totalPages) {
                                             showPage(currentPage + 1);
                                         }
+                                    }
+
+                                    function changeItemsPerPage() {
+                                        recordsPerPage = parseInt(document.getElementById('itemsPerPage').value);
+                                        totalPages = Math.ceil(totalRecords / recordsPerPage);
+                                        showPage(1);
                                     }
                                 </script>
                             </div>

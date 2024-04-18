@@ -28,15 +28,13 @@ Route::prefix('submit')->group(function () {
     Route::get('/delete/{id}',[SubmitController::class,'delete'])->name('submit.delete');
 });
 
-
-Route::prefix('mailbox')->group(function () {
-     Route::get('/',[MailController::class,'inbox'])->name('mailbox.inbox');
-     Route::get('/newchat',[MailController::class,'newchat'])->name('mailbox.newchat');
-     Route::post('/newchat',[MailController::class,'create']);
-     Route::get('/detail/{id}',[MailController::class,'detail'])->name('mailbox.detail');
-     Route::put('/detail/{id}',[MailController::class,'update']);
-     Route::delete('/delete/{id}',[MailController::class,'delete'])->name('mailbox.delete');
+Route::prefix('emails')->group(function () {
+     Route::get('/',[MailController::class,'index'])->name('emails.index');
+     Route::get('/create',[MailController::class,'create'])->name('emails.create');
+     Route::post('/create',[MailController::class,'store'])->name('emails.create');
+     Route::get('/show/{id}',[MailController::class,'show'])->name('emails.show');
+     Route::get('/edit/{id}',[MailController::class,'edit'])->name('emails.edit');
+     Route::put('/edit/{id}',[MailController::class,'update'])->name('emails.edit');
+     Route::delete('/delete/{id}',[MailController::class,'delete'])->name('emails.delete');
 });
 
-Route::get('emails/create', [MailController::class, 'create'])->name('emails.create');
-Route::post('emails', [MailController::class, 'store'])->name('emails.store');

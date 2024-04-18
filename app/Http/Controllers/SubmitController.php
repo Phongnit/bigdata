@@ -12,10 +12,6 @@ class SubmitController extends Controller
 {
     public function list(Request $request)
     {
-        // $submits = Submit::orderBy('id', 'desc')->paginate(10);
-        // $field = Field::all();
-        // return view('submit.list', compact('submits'));
-
         $search = $request->input('search');
         $filters = $request->only(['country', 'field']);
         // $submits = Submit::orderBy('id', 'desc');

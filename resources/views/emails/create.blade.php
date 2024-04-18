@@ -9,12 +9,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Chi tiết</h1>
+                        <h1>Create Email</h1>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Chi tiết</li>
+                            <li class="breadcrumb-item active">Create Email</li>
                         </ol>
                     </div>
                 </div>
@@ -27,7 +27,7 @@
                 <div class="row">
 
                     <div class="col-md-3">
-                        <a href="mailbox.html" class="btn btn-primary btn-block mb-3">Back to Inbox</a>
+                        <a href="mailbox.html" class="btn btn-primary btn-block mb-3">Quay lại danh sách</a>
 
                         <div class="card">
                             <div class="card-header">
@@ -42,30 +42,24 @@
                             <div class="card-body p-0">
                                 <ul class="nav nav-pills flex-column">
                                     <li class="nav-item active">
-                                        <a href="#" class="nav-link">
-                                            <i class="fas fa-inbox"></i> Inbox
+                                        <a href="{{ route('emails.index') }}" class="nav-link">
+                                            <i class="fas fa-inbox"></i> Danh sách
                                             <span class="badge bg-primary float-right">12</span>
                                         </a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="#" class="nav-link">
-                                            <i class="far fa-envelope"></i> Sent
+                                            <i class="far fa-envelope"></i> Gửi Email
                                         </a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="#" class="nav-link">
-                                            <i class="far fa-file-alt"></i> Drafts
+                                            <i class="far fa-file-alt"></i> Bản nháp
                                         </a>
                                     </li>
                                     <li class="nav-item">
                                         <a href="#" class="nav-link">
-                                            <i class="fas fa-filter"></i> Junk
-                                            <span class="badge bg-warning float-right">65</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="#" class="nav-link">
-                                            <i class="far fa-trash-alt"></i> Trash
+                                            <i class="far fa-trash-alt"></i> Thùng rác
                                         </a>
                                     </li>
                                 </ul>
@@ -107,38 +101,39 @@
                     <div class="col-md-9">
                         <div class="card card-primary card-outline">
                             <div class="card-header">
-                                <h3 class="card-title">Compose New Message</h3>
+                                <h3 class="card-title">Tạo mới mẫu Email</h3>
                             </div>
                             <!-- /.card-header -->
-                            <div class="card-body">
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="To:">
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="Subject:">
-                                </div>
-                                <div class="form-group">
-                                    <textarea id="compose-textarea" class="form-control" style="height: 300px; display: none;"></textarea>
-                                </div>
-                                <div class="form-group">
+                            <form action="" method="POST">
+                                @csrf
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <input class="form-control" name="subject" placeholder="Tiêu đề:">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="">Nội dung:</label>
+                                        <textarea id="compose-textarea" name="content" class="form-control" style="height: 300px; display: none;" placeholder="Nội dung:"></textarea>
+                                    </div>
+                                    {{-- <div class="form-group">
                                     <div class="btn btn-default btn-file">
-                                        <i class="fas fa-paperclip"></i> Attachment
+                                        <i class="fas fa-paperclip"></i> Đính kèm tệp
                                         <input type="file" name="attachment">
                                     </div>
-                                    <p class="help-block">Max. 32MB</p>
+                                    <p class="help-block">Tối đa. 32MB</p>
+                                </div> --}}
                                 </div>
-                            </div>
-                            <!-- /.card-body -->
-                            <div class="card-footer">
-                                <div class="float-right">
-                                    <button type="button" class="btn btn-default"><i class="fas fa-pencil-alt"></i>
-                                        Draft</button>
-                                    <button type="submit" class="btn btn-primary"><i class="far fa-envelope"></i>
-                                        Send</button>
+                                <!-- /.card-body -->
+                                <div class="card-footer">
+                                    <div class="float-right">
+                                        <button type="button" class="btn btn-default"><i class="fas fa-pencil-alt"></i>
+                                            Lưu nháp</button>
+                                        <button type="submit" class="btn btn-primary"><i class="far fa-envelope"></i>
+                                            Gửi mail</button>
+                                    </div>
+                                    <button type="reset" class="btn btn-default"><i class="fas fa-times"></i>
+                                        Discard</button>
                                 </div>
-                                <button type="reset" class="btn btn-default"><i class="fas fa-times"></i>
-                                    Discard</button>
-                            </div>
+                            </form>
                             <!-- /.card-footer -->
                         </div>
                         <!-- /.card -->

@@ -314,23 +314,18 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="pages/mailbox/mailbox.html" class="nav-link">
+                                    <a href="{{ route('emails.index') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Inbox</p>
+                                        <p>Danh sách</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="pages/mailbox/compose.html" class="nav-link">
+                                    <a href="{{ route('emails.create') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Compose</p>
+                                        <p>Tạo mới</p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="pages/mailbox/read-mail.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Read</p>
-                                    </a>
-                                </li>
+                                
                             </ul>
                         </li>
                     </ul>

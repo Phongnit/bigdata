@@ -26,3 +26,18 @@ div#pagination-container button.active, div#pagination-container button:hover {
     border-color: #4DA1FA;
     color: #fff;
 }
+div#filter {
+    display: contents;
+}
+.note-editable.card-block {
+    min-height: 265.906px;
+}
+.mailbox-controls span#pagination>button {
+    background: unset;
+    border: unset;
+    font-weight: 500;
+    color: #007bff;
+}
+.mailbox-controls span#pagination>button.active {
+    color: #000;
+}
