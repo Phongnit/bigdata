@@ -334,7 +334,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('emails.create') }}" class="nav-link">
+                                    <a href="{{ route('emails.trashed') }}" class="nav-link">
                                         <i class="fas fa-trash-alt nav-icon"></i>
                                         <p>Thùng rác</p>
                                     </a>

@@ -101,4 +101,9 @@ class MailController extends Controller
     {
         return redirect()->route('emails.index')->with('success', 'Gửi mail thành công.');
     }
+    public function trashed()
+    {
+        $emails = Email::onlyTrashed()->get();
+        return view('emails.trashed', compact('emails'));
+    }
 }

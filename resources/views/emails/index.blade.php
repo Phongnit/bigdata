@@ -122,8 +122,8 @@
                                                     <td class="mailbox-name"><a
                                                             href="{{ route('emails.show', ['id' => $emails->id]) }}">{{ $emails->subject }}</a>
                                                     </td>
-                                                    <td class="mailbox-subject">Admin</td>
-                                                    <td>Đã duyệt</td>
+                                                    <td class="mailbox-subject">{{ $emails->users->name}}</td>
+                                                    <td>{{ $emails->deleted_at == null ? 'Đã duyệt' : 'Đã xóa' }}</td>
                                                     <td class="mailbox-attachment"><i class="fas fa-paperclip"></i></td>
                                                     <td class="mailbox-date">{{ $emails->created_at->format('d/m/Y') }}</td>
                                                     <td><a href="{{ route('emails.delete', ['id' => $emails->id]) }}"

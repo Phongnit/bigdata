@@ -15,5 +15,10 @@ class Email extends Model
     protected $fillable = [
         'subject',
         'content',
+        'user_id',
     ];
+    public function users()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }
