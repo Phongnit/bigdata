@@ -255,9 +255,8 @@
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-address-card"></i>
                                 <p>
-                                    Submit
+                                    Khách hàng
                                     <i class="fas fa-angle-left right"></i>
-                                    <span class="badge badge-info right">6</span>
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
@@ -265,6 +264,10 @@
                                     <a href="{{ route('submit.list') }}" class="nav-link">
                                         <i class="nav-icon fas fa-copy"></i>
                                         <p>Danh sách</p>
+                                        @php
+                                            $countsm = DB::table('table_submit')->whereNull('deleted_at')->count();
+                                        @endphp
+                                        <span class="badge badge-info right">{{ $countsm }}</span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -288,6 +291,7 @@
                                 <p>
                                     Người dùng
                                     <i class="fas fa-angle-left right"></i>
+
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
@@ -295,6 +299,10 @@
                                     <a href="#" class="nav-link">
                                         <i class="nav-icon fas fa-copy"></i>
                                         <p>Danh sách</p>
+                                        @php
+                                            $countus = DB::table('table_users')->whereNull('deleted_at')->count();
+                                        @endphp
+                                        <span class="badge badge-info right">{{ $countus }}</span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -318,6 +326,10 @@
                                     <a href="{{ route('emails.index') }}" class="nav-link">
                                         <i class="nav-icon fas fa-copy"></i>
                                         <p>Danh sách</p>
+                                        @php
+                                            $countem = DB::table('table_emails')->whereNull('deleted_at')->where('status',1)->count();
+                                        @endphp
+                                        <span class="badge badge-info right">{{ $countem }}</span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
@@ -328,18 +340,26 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('emails.create') }}" class="nav-link">
+                                    <a href="{{ route('emails.draft') }}" class="nav-link">
                                         <i class="fas fa-file-signature nav-icon"></i>
                                         <p>Bản nháp</p>
+                                        @php
+                                            $countemt = DB::table('table_emails')->whereNull('deleted_at')->where('status',0)->count();
+                                        @endphp
+                                        <span class="badge badge-info right">{{ $countemt }}</span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{ route('emails.trashed') }}" class="nav-link">
                                         <i class="fas fa-trash-alt nav-icon"></i>
                                         <p>Thùng rác</p>
+                                        @php
+                                            $countemd = DB::table('table_emails')->whereNotNull('deleted_at')->count();
+                                        @endphp
+                                        <span class="badge badge-info right">{{ $countemd }}</span>
                                     </a>
                                 </li>
-                                
+
                             </ul>
                         </li>
                     </ul>
@@ -609,11 +629,11 @@
         // DropzoneJS Demo Code End
     </script>
     <script>
-        $(function () {
-          //Add text editor
-          $('#compose-textarea').summernote()
+        $(function() {
+            //Add text editor
+            $('#compose-textarea').summernote()
         })
-      </script>
+    </script>
 </body>
 
 </html>
