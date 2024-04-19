@@ -106,4 +106,11 @@ class MailController extends Controller
         $emails = Email::onlyTrashed()->get();
         return view('emails.trashed', compact('emails'));
     }
+    public function return($id){
+        $emails = Email::withTrashed()->where('id', $id)->first();
+        $emails->deleted_at = null;
+        $emails->save();
+        return redirect()->route('emails.trashed')->with('success', 'Đã hoàn lại emails');
+        
+    }
 }

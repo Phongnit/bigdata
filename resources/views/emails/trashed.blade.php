@@ -55,7 +55,7 @@
                                             <th>Người tạo</th>
                                             <th>Trạng thái</th>
                                             <th></th>
-                                            <th>Ngày tạo</th>
+                                            <th>Ngày xóa</th>
                                             <th></th>
                                         </thead>
                                         <tbody>
@@ -69,14 +69,13 @@
                                                     </td> --}}
                                                     <td class="mailbox-star">{{ $loop->iteration }}</td>
                                                     <td class="mailbox-name">{{ $emails->subject }}</td>
-                                                    <td class="mailbox-subject">{{ $emails->users->name}}</td>
+                                                    <td class="mailbox-subject">{{ $emails->users->name }}</td>
                                                     <td>{{ $emails->deleted_at == null ? 'Đã duyệt' : 'Đã xóa' }}</td>
                                                     <td class="mailbox-attachment"><i class="fas fa-paperclip"></i></td>
-                                                    <td class="mailbox-date">{{ $emails->created_at->format('d/m/Y') }}</td>
-                                                    <td><a href="{{ route('emails.delete', ['id' => $emails->id]) }}"
-                                                            onclick="return confirm('Bạn có chắc muốn xóa không?');"><i
-                                                                style="color: red;" class="fa fa-trash"
-                                                                aria-hidden="true"></i></a></td>
+                                                    <td class="mailbox-date">{{ $emails->deleted_at->format('d/m/Y') }}</td>
+                                                    <td><a href="{{ route('emails.return', ['id' => $emails->id]) }}"
+                                                            onclick="return confirm('Bạn có chắc muốn hoàn lại không?');"><i class="fas fa-undo"></i></a>
+                                                    </td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
@@ -94,7 +93,7 @@
                                 <script>
                                     var currentPage = 1;
                                     var recordsPerPage = 10;
-                                    var rows = document.getElementById('example1').getElementsByTagName('tbody')[0].rows;
+                                    var rows = document.getElementById('tb-email').getElementsByTagName('tbody')[0].rows;
                                     var totalRecords = rows.length;
                                     var totalPages = Math.ceil(totalRecords / recordsPerPage);
 
@@ -194,9 +193,9 @@
                                         }
                                         // Kiểm tra số lượng checkbox "tickmail" đã được chọn
                                         var checkedCount = document.querySelectorAll('[name="tickmail"]:checked').length;
-                                            // Gán số lượng checkbox "tickmail" đã được chọn vào biến để hiển thị
-                                            var selectedCountElement = document.querySelector('#selected-count');
-                                            selectedCountElement.textContent = checkedCount;
+                                        // Gán số lượng checkbox "tickmail" đã được chọn vào biến để hiển thị
+                                        var selectedCountElement = document.querySelector('#selected-count');
+                                        selectedCountElement.textContent = checkedCount;
                                     });
 
                                     // Lắng nghe sự kiện khi click vào bất kỳ checkbox "tickmail" nào
