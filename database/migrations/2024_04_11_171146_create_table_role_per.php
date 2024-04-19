@@ -16,7 +16,6 @@ return new class extends Migration
             $table->foreign('role_id')->references('id')->on('table_role');
             $table->unsignedBigInteger('per_id');
             $table->foreign('per_id')->references('id')->on('table_permission');
-
         });
     }
 

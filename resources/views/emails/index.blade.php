@@ -4,6 +4,13 @@
 @endsection
 @section('main')
     <div class="content-wrapper">
+        @if (session('success'))
+            <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h5><i class="icon fas fa-check"></i> Thành công !</h5>
+                {{ session('success') }}
+            </div>
+        @endif
         <!-- Content Header (Page header) -->
         <div class="content-header">
             <div class="container-fluid">
@@ -29,7 +36,7 @@
                     <div class="col-md-12">
                         <div class="card card-primary card-outline">
                             <div class="card-header">
-                                <h3 class="card-title">Inbox</h3>
+                                <a class="button btn-success" href="{{ route('emails.create') }}">Thêm mới</a>
 
                                 <div class="card-tools" style="display:inline-block;">
                                     {{-- <div class="amount-flt">
@@ -42,15 +49,16 @@
                                         </select>
                                     </div> --}}
                                     <form id="search-form" class="filter-email" method="GET">
-                                    <div class="input-group input-group-sm">
-                                        <input type="text" class="form-control" name="search"  placeholder="Tìm kiếm" value="{{ request('search') }}">
-                                        <div class="input-group-append">
+                                        <div class="input-group input-group-sm">
+                                            <input type="text" class="form-control" name="search" placeholder="Tìm kiếm"
+                                                value="{{ request('search') }}">
+                                            <div class="input-group-append">
                                                 <button class="btn btn-primary" type="submit">
                                                     <i class="fas fa-search"></i>
                                                 </button>
+                                            </div>
                                         </div>
-                                    </div>
-                                </form>
+                                    </form>
                                 </div>
                                 <!-- /.card-tools -->
                             </div>
@@ -110,7 +118,7 @@
                                                             <label for="check15"></label>
                                                         </div>
                                                     </td> --}}
-                                                    <td class="mailbox-star">{{ $loop->iteration}}</td>
+                                                    <td class="mailbox-star">{{ $loop->iteration }}</td>
                                                     <td class="mailbox-name"><a
                                                             href="{{ route('emails.show', ['id' => $emails->id]) }}">{{ $emails->subject }}</a>
                                                     </td>
@@ -154,7 +162,8 @@
                                     <div class="float-right">
                                         <span id="pagination"></span>
                                         <div class="btn-group">
-                                            <button onclick="previousPage()" type="button" class="btn btn-default btn-sm">
+                                            <button onclick="previousPage()" type="button"
+                                                class="btn btn-default btn-sm">
                                                 <i class="fas fa-chevron-left"></i>
                                             </button>
                                             <button type="button" onclick="nextPage()" class="btn btn-default btn-sm">

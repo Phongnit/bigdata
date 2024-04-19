@@ -51,6 +51,7 @@
     <link rel="stylesheet" href="{{ asset('dist') }}/css/style.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
 
 
 </head>
@@ -252,7 +253,7 @@
                         data-accordion="false">
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-copy"></i>
+                                <i class="nav-icon fas fa-address-card"></i>
                                 <p>
                                     Submit
                                     <i class="fas fa-angle-left right"></i>
@@ -262,19 +263,19 @@
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
                                     <a href="{{ route('submit.list') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
+                                        <i class="nav-icon fas fa-copy"></i>
                                         <p>Danh sách</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{ route('submit.create') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
+                                        <i class="fas fa-plus nav-icon"></i>
                                         <p>Thêm mới</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
+                                        <i class="fas fa-users nav-icon"></i>
                                         <p>Phân quyền</p>
                                     </a>
                                 </li>
@@ -283,7 +284,7 @@
 
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-copy"></i>
+                                <i class="nav-icon fas fa-user-circle"></i>
                                 <p>
                                     Người dùng
                                     <i class="fas fa-angle-left right"></i>
@@ -292,13 +293,13 @@
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
                                     <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
+                                        <i class="nav-icon fas fa-copy"></i>
                                         <p>Danh sách</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="#" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
+                                        <i class="fas fa-plus nav-icon"></i>
                                         <p>Thêm mới</p>
                                     </a>
                                 </li>
@@ -315,14 +316,27 @@
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
                                     <a href="{{ route('emails.index') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
+                                        <i class="nav-icon fas fa-copy"></i>
                                         <p>Danh sách</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{ route('emails.create') }}" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
+                                        <i class="fas fa-plus nav-icon"></i>
+
                                         <p>Tạo mới</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('emails.create') }}" class="nav-link">
+                                        <i class="fas fa-file-signature nav-icon"></i>
+                                        <p>Bản nháp</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('emails.create') }}" class="nav-link">
+                                        <i class="fas fa-trash-alt nav-icon"></i>
+                                        <p>Thùng rác</p>
                                     </a>
                                 </li>
                                 

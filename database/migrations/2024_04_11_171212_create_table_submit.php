@@ -21,6 +21,7 @@ return new class extends Migration
             $table->foreign('fld_id')->references('id')->on('table_field');
             $table->unsignedBigInteger('cty_id');
             $table->foreign('cty_id')->references('id')->on('table_country');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

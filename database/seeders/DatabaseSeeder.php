@@ -6,6 +6,8 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Faker\Factory as Faker;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -21,6 +23,45 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
+        // data roles
+        DB::table('table_role')->insert([
+            [
+                'id' => 1,
+                'name' => 'Admin',
+            ], [
+                'id' => 2,
+                'name' => 'Leader',
+            ], [
+                'id' => 3,
+                'name' => 'Sales',
+            ]
+        ]);
+
+        // data lĩnh vực 
+        DB::table('table_users')->insert([
+            [
+                'id' => 1,
+                'name' => 'Admin',
+                'phone' => '0123456789',
+                'email' => 'admin@gmail.com',
+                'password' => Hash::make('admin@123'),
+                'role_id' => 1,
+            ], [
+                'id' => 2,
+                'name' => 'leader',
+                'phone' => '0987654321',
+                'email' => 'leader@gmail.com',
+                'password' => Hash::make('leader@123'),
+                'role_id' => 2,
+            ], [
+                'id' => 3,
+                'name' => 'Saler',
+                'phone' => '1234567890',
+                'email' => 'sale@gmail.com',
+                'password' => Hash::make('sale@123'),
+                'role_id' => 3,
+            ]
+        ]);
         // data lĩnh vực 
         DB::table('table_field')->insert([
             [
@@ -73,6 +114,8 @@ class DatabaseSeeder extends Seeder
             $description = $faker->sentence;
             $fld_id = $faker->numberBetween(1, 3);
             $cty_id = $faker->numberBetween(1, 7);
+            $created_at = Carbon::now()->subDays($faker->numberBetween(1, 30));
+
 
             // Tạo bản ghi
             DB::table('table_submit')->insert([
@@ -82,6 +125,26 @@ class DatabaseSeeder extends Seeder
                 'description' => $description,
                 'fld_id' => $fld_id,
                 'cty_id' => $cty_id,
+                'created_at' => $created_at,
+
+            ]);
+        }
+
+        $emailcount = 50;
+        for ($i = 0; $i < $emailcount; $i++) {
+            $subject = $faker->sentence;
+            $content = $faker->paragraphs(5, true);
+            $created_at = Carbon::now()->subDays($faker->numberBetween(1, 30));
+            $user_id = $faker->numberBetween(1, 3);
+            // $softdelete = $faker->numberBetween(0, 1);
+
+            // Tạo bản ghi
+            DB::table('table_emails')->insert([
+                'subject' => $subject,
+                'content' => $content,
+                'created_at' => $created_at,
+                'user_id' => $user_id,
+                // 'softdelete' => $softdelete,
             ]);
         }
     }

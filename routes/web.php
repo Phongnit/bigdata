@@ -35,6 +35,9 @@ Route::prefix('emails')->group(function () {
      Route::get('/show/{id}',[MailController::class,'show'])->name('emails.show');
      Route::get('/edit/{id}',[MailController::class,'edit'])->name('emails.edit');
      Route::put('/edit/{id}',[MailController::class,'update'])->name('emails.edit');
-     Route::delete('/delete/{id}',[MailController::class,'delete'])->name('emails.delete');
+     Route::get('/delete/{id}',[MailController::class,'delete'])->name('emails.delete');
+     Route::get('/send/{id}',[MailController::class,'send'])->name('emails.send');
+     Route::get('/sendmore/{id}',[MailController::class,'sendmore'])->name('emails.sendmore');
+     Route::get('/sendall/{id}',[MailController::class,'sendall'])->name('emails.sendall');
 });
 

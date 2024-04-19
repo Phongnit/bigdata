@@ -41,3 +41,13 @@ div#filter {
 .mailbox-controls span#pagination>button.active {
     color: #000;
 }
+.alert.alert-success {
+    position: fixed;
+    top: 5%;
+    right: 0%;
+    z-index: 99999999;
+    width: 350px;
+    color: #fff;
+    background-color: #28a745;
+    border-color: #23923d;
+}
