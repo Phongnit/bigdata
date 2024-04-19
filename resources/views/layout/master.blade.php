@@ -327,7 +327,7 @@
                                         <i class="nav-icon fas fa-copy"></i>
                                         <p>Danh sách</p>
                                         @php
-                                            $countem = DB::table('table_emails')->whereNull('deleted_at')->count();
+                                            $countem = DB::table('table_emails')->whereNull('deleted_at')->where('status',1)->count();
                                         @endphp
                                         <span class="badge badge-info right">{{ $countem }}</span>
                                     </a>
@@ -340,11 +340,11 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{ route('emails.create') }}" class="nav-link">
+                                    <a href="{{ route('emails.draft') }}" class="nav-link">
                                         <i class="fas fa-file-signature nav-icon"></i>
                                         <p>Bản nháp</p>
                                         @php
-                                            $countemt = DB::table('table_emails')->count();
+                                            $countemt = DB::table('table_emails')->whereNull('deleted_at')->where('status',0)->count();
                                         @endphp
                                         <span class="badge badge-info right">{{ $countemt }}</span>
                                     </a>

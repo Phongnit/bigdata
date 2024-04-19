@@ -41,5 +41,6 @@ Route::prefix('emails')->group(function () {
      Route::get('/sendall/{id}',[MailController::class,'sendall'])->name('emails.sendall');
      Route::get('/trashed',[MailController::class,'trashed'])->name('emails.trashed');
      Route::get('/return/{id}',[MailController::class,'return'])->name('emails.return');
+     Route::get('/draft' , [MailController::class,'draft'])->name('emails.draft');
 });
 

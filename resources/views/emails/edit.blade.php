@@ -108,7 +108,7 @@
                                 <h3 class="card-title">Chỉnh sửa Email</h3>
                             </div>
                             <!-- /.card-header -->
-                            <form action="" method="POST">
+                            <form id="emailForm" action="" method="POST">
                                 @csrf
                                 @method('PUT')
 
@@ -122,6 +122,8 @@
                                             {!!$emails->content!!}
                                         </textarea>
                                     </div>
+                                    <input type="hidden" name="status" id="statusInput" value="">
+                                    <input type="hidden" name="user_id" value="1">
                                     {{-- <div class="form-group">
                                     <div class="btn btn-default btn-file">
                                         <i class="fas fa-paperclip"></i> Đính kèm tệp
@@ -133,16 +135,32 @@
                                 <!-- /.card-body -->
                                 <div class="card-footer">
                                     <div class="float-right">
-                                        <button type="button" class="btn btn-default"><i class="fas fa-pencil-alt"></i>
+                                        <button type="button" id="saveDraftBtn" class="btn btn-default"><i class="fas fa-pencil-alt"></i>
                                             Lưu nháp</button>
-                                        <button type="submit" class="btn btn-primary"><i class="far fa-envelope"></i>
-                                            Lưu thay đổi</button>
+                                        <button type="submit" id="sendEmailBtn" class="btn btn-primary"><i class="far fa-envelope"></i>
+                                            Lưu mẫu email</button>
                                     </div>
                                     <button type="reset" class="btn btn-default"><i class="fas fa-times"></i>
                                         Discard</button>
                                 </div>
                             </form>
                             <!-- /.card-footer -->
+                            <script>
+                                var saveDraftBtn = document.getElementById('saveDraftBtn');
+                                var sendEmailBtn = document.getElementById('sendEmailBtn');
+                                var statusInput = document.getElementById('statusInput');
+                                var emailForm = document.getElementById('emailForm');
+                            
+                                saveDraftBtn.addEventListener('click', function () {
+                                    statusInput.value = 0; // Thiết lập giá trị status = 0
+                                    emailForm.submit(); // Gửi form đi
+                                });
+                            
+                                sendEmailBtn.addEventListener('click', function () {
+                                    statusInput.value = 1; // Thiết lập giá trị status = 1
+                                    emailForm.submit(); // Gửi form đi
+                                });
+                            </script>
                         </div>
                         <!-- /.card -->
                     </div>

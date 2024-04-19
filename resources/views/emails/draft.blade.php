@@ -1,21 +1,28 @@
 @extends('layout.master')
 @section('title')
-    Thùng rác
+    Bản nháp
 @endsection
 @section('main')
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
+        @if (session('success'))
+            <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h5><i class="icon fas fa-check"></i> Thành công !</h5>
+                {{ session('success') }}
+            </div>
+        @endif
         <!-- Content Header (Page header) -->
         <div class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Thùng rác</h1>
+                        <h1 class="m-0">Bản nháp</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
-                            <li class="breadcrumb-item active">Thùng rác</li>
+                            <li class="breadcrumb-item active">Bản nháp</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -55,7 +62,7 @@
                                             <th>Người tạo</th>
                                             <th>Trạng thái</th>
                                             <th></th>
-                                            <th>Ngày xóa</th>
+                                            <th>Ngày tạo</th>
                                             <th></th>
                                         </thead>
                                         <tbody>
@@ -72,10 +79,8 @@
                                                     <td class="mailbox-subject">{{ $emails->users->name }}</td>
                                                     <td>{{ $emails->deleted_at == null ? 'Đã duyệt' : 'Đã xóa' }}</td>
                                                     <td class="mailbox-attachment"><i class="fas fa-paperclip"></i></td>
-                                                    <td class="mailbox-date">{{ $emails->deleted_at->format('d/m/Y') }}</td>
-                                                    <td><a href="{{ route('emails.return', ['id' => $emails->id]) }}"
-                                                            onclick="return confirm('Bạn có chắc muốn hoàn lại không?');"><i
-                                                                class="fas fa-undo"></i></a>
+                                                    <td class="mailbox-date">{{ $emails->created_at->format('d/m/Y') }}</td>
+                                                    <td><a href="{{ route('emails.edit', ['id' => $emails->id]) }}"><i class="fas fa-edit"></i></a>
                                                         <a href="{{ route('emails.delete', ['id' => $emails->id]) }}"
                                                             onclick="return confirm('Bạn có chắc muốn xóa không?');"><i
                                                                 style="color: red;" class="fa fa-trash"

@@ -22,7 +22,7 @@ class MailController extends Controller
                 $query->where('subject', 'LIKE', "%$search%");
             });
         }
-        $emails = $emails->orderBy('created_at','desc')->get();
+        $emails = $emails->orderBy('created_at','desc')->where('status',1)->get();
         return view('emails.index', compact('emails'));
     }
     public function create()
@@ -34,9 +34,14 @@ class MailController extends Controller
         $email = new Email();
         $email->subject = $request->input('subject');
         $email->content = $request->input('content');
+        $email->status = $request->input('status');
+        $email->user_id = $request->input('user_id');
         $email->save();
-
-        return redirect()->route('emails.index')->with('success', 'Đã tạo mới email.');
+        if($request->input('status') == 1){
+            return redirect()->route('emails.index')->with('success', 'Đã tạo mới email.');
+        }else{
+            return redirect()->route('emails.draft')->with('success', 'Đã Lưu bản nháp');
+        }
     }
     public function edit($id)
     {
@@ -46,8 +51,17 @@ class MailController extends Controller
     public function update(Request $request, $id)
     {
         $emails = Email::find($id);
-        $emails->update($request->all());
-        return redirect()->route('emails.index')->with('success', 'Đã lưu lại thay đổi.');
+        $emails->subject = $request->input('subject');
+        $emails->content = $request->input('content');
+        $emails->status = $request->input('status');
+        $emails->user_id = $request->input('user_id');
+        $emails->update();
+        
+        if($request->input('status') == 1){
+            return redirect()->route('emails.index')->with('success', 'Đã lưu lại thay đổi.');
+        }else{
+            return redirect()->route('emails.draft')->with('success', 'Đã Lưu bản nháp');
+        }
     }
     public function show($id)
     {
@@ -56,8 +70,14 @@ class MailController extends Controller
     }
     public function delete($id)
     {
-        $emails = Email::find($id)->delete();
-        return redirect()->route('emails.index')->with('success', 'Xóa thành công');
+        $emails = Email::find($id);
+        if($emails){
+            $emails->delete();
+        }else{
+            $emails = Email::withTrashed()->find($id);
+            $emails->forceDelete() ;
+        }
+        return redirect()->back()->with('success', 'Đã xóa thành công !');
     }
     public function send(Request $request,$id)
     {
@@ -103,7 +123,7 @@ class MailController extends Controller
     }
     public function trashed()
     {
-        $emails = Email::onlyTrashed()->get();
+        $emails = Email::onlyTrashed()->orderBy('created_at','desc')->get();
         return view('emails.trashed', compact('emails'));
     }
     public function return($id){
@@ -111,6 +131,10 @@ class MailController extends Controller
         $emails->deleted_at = null;
         $emails->save();
         return redirect()->route('emails.trashed')->with('success', 'Đã hoàn lại emails');
-        
+    }
+    public function draft(){
+        $emails = Email::query();
+        $emails = $emails->where('status', 0)->orderBy('created_at','desc')->get();
+        return view('emails.draft', compact('emails'));
     }
 }

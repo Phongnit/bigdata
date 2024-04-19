@@ -119,17 +119,18 @@
                                                         </div>
                                                     </td> --}}
                                                     <td class="mailbox-star">{{ $loop->iteration }}</td>
-                                                    <td class="mailbox-name"><a
-                                                            href="{{ route('emails.show', ['id' => $emails->id]) }}">{{ $emails->subject }}</a>
-                                                    </td>
-                                                    <td class="mailbox-subject">{{ $emails->users->name}}</td>
+                                                    <td class="mailbox-name">{{ $emails->subject }}</td>
+                                                    <td class="mailbox-subject">{{ $emails->users->name }}</td>
                                                     <td>{{ $emails->deleted_at == null ? 'Đã duyệt' : 'Đã xóa' }}</td>
                                                     <td class="mailbox-attachment"><i class="fas fa-paperclip"></i></td>
                                                     <td class="mailbox-date">{{ $emails->created_at->format('d/m/Y') }}</td>
-                                                    <td><a href="{{ route('emails.delete', ['id' => $emails->id]) }}"
+                                                    <td><a href="{{ route('emails.show', ['id' => $emails->id]) }}"><i class="text-success fas fa-eye"></i></a>
+                                                        <a href="{{ route('emails.edit', ['id' => $emails->id]) }}"><i class="text-primary fas fa-edit"></i></a>
+                                                        <a href="{{ route('emails.delete', ['id' => $emails->id]) }}"
                                                             onclick="return confirm('Bạn có chắc muốn xóa không?');"><i
                                                                 style="color: red;" class="fa fa-trash"
-                                                                aria-hidden="true"></i></a></td>
+                                                                aria-hidden="true"></i></a>
+                                                    </td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
