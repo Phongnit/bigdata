@@ -51,3 +51,13 @@ div#filter {
     background-color: #28a745;
     border-color: #23923d;
 }
+.alert.alert-error {
+    position: fixed;
+    top: 5%;
+    right: 0%;
+    z-index: 99999999;
+    width: 350px;
+    color: #fff;
+    background-color: #dc3545;
+    border-color:#dc3545;
+}
