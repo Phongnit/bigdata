@@ -1,6 +1,6 @@
 @extends('layout.master')
 @section('title')
-    {{ $emails->subject }}
+    {{ $sms->subject }}
 @endsection
 @section('main')
     <div class="content-wrapper">
@@ -116,10 +116,10 @@
                             <!-- /.card-header -->
                             <div class="card-body p-0">
                                 <div class="mailbox-read-info">
-                                    <h5>{{ $emails->subject }}</h5>
+                                    <h5>{{ $sms->subject }}</h5>
                                     <h6>Người tạo: Admin
                                         <span
-                                            class="mailbox-read-time float-right">{{ $emails->created_at->format('d/m/Y H:i') }}</span>
+                                            class="mailbox-read-time float-right">{{ $sms->created_at->format('d/m/Y H:i') }}</span>
                                     </h6>
                                 </div>
                                 <!-- /.mailbox-read-info -->
@@ -145,7 +145,7 @@
                                 </div>
                                 <!-- /.mailbox-controls -->
                                 <div class="mailbox-read-message">
-                                    {!! $emails->content !!}
+                                    {!! $sms->content !!}
                                 </div>
                                 <!-- /.mailbox-read-message -->
                             </div>
@@ -211,10 +211,10 @@
                             <!-- /.card-footer -->
                             <div class="card-footer">
                                 <div class="float-right">
-                                    <a href="{{ route('emails.send', ['id' => $emails->id]) }}" class="btn btn-default"><i
+                                    <a href="{{ route('emails.send', ['id' => $sms->id]) }}" class="btn btn-default"><i
                                             class="fa fa-filter"></i> Gửi theo bộ lọc</a>
 
-                                    <a href="{{ route('emails.sendall', ['id' => $emails->id]) }}"
+                                    <a href="{{ route('emails.sendall', ['id' => $sms->id]) }}"
                                         onclick="return confirm('Bạn có chắc muốn gửi tất cả không?');"class="btn btn-default"><i
                                             class="fas fa-share"></i> Gửi tất cả</a>
                                 </div>
@@ -223,7 +223,7 @@
                                 <button type="button" class="btn btn-default"><i class="fas fa-print"></i>
                                     In</button>
                                 <button type="button"
-                                    onclick="window.location.href='{{ route('emails.edit', ['id' => $emails->id]) }}'"
+                                    onclick="window.location.href='{{ route('emails.edit', ['id' => $sms->id]) }}'"
                                     class="btn btn-default"><i class="fa fa-wrench" aria-hidden="true"></i>
                                     Chỉnh sửa</button>
                             </div>

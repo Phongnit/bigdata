@@ -106,7 +106,7 @@
                                     <button onclick="previousPage()">&lt;</button>
                                     <span id="pagination"></span>
                                     <button onclick="nextPage()">&gt;</button>
-                                    <a id="send_email" href="{{ route('emails.sendmore', ['id' => $emails->id]) }}"
+                                    <a id="send_email" href="{{ route('emails.sendmore', ['id' => $sms->id]) }}"
                                         onclick="return confirm('Bạn có chắc muốn những mail đã chọn không?');"class="btn btn-default"><i
                                             class="fas fa-share"></i> Gửi SMS</a>
                                 </div>

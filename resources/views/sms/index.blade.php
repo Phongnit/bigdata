@@ -110,7 +110,7 @@
                                             <th></th>
                                         </thead>
                                         <tbody>
-                                            @foreach ($emails as $emails)
+                                            @foreach ($sms as $sms)
                                                 <tr>
                                                     {{-- <td>
                                                         <div class="icheck-primary">
@@ -119,14 +119,14 @@
                                                         </div>
                                                     </td> --}}
                                                     <td class="mailbox-star">{{ $loop->iteration }}</td>
-                                                    <td class="mailbox-name">{{ $emails->subject }}</td>
-                                                    <td class="mailbox-subject">{{ $emails->users->name }}</td>
-                                                    <td>{{ $emails->deleted_at == null ? 'Đã duyệt' : 'Đã xóa' }}</td>
+                                                    <td class="mailbox-name">{{ $sms->subject }}</td>
+                                                    <td class="mailbox-subject">{{ $sms->users->name }}</td>
+                                                    <td>{{ $sms->deleted_at == null ? 'Đã duyệt' : 'Đã xóa' }}</td>
                                                     <td class="mailbox-attachment"><i class="fas fa-paperclip"></i></td>
-                                                    <td class="mailbox-date">{{ $emails->created_at->format('d/m/Y') }}</td>
-                                                    <td><a href="{{ route('emails.show', ['id' => $emails->id]) }}"><i class="text-success fas fa-eye"></i></a>
-                                                        <a href="{{ route('emails.edit', ['id' => $emails->id]) }}"><i class="text-primary fas fa-edit"></i></a>
-                                                        <a href="{{ route('emails.delete', ['id' => $emails->id]) }}"
+                                                    <td class="mailbox-date">{{ $sms->created_at->format('d/m/Y') }}</td>
+                                                    <td><a href="{{ route('emails.show', ['id' => $sms->id]) }}"><i class="text-success fas fa-eye"></i></a>
+                                                        <a href="{{ route('emails.edit', ['id' => $sms->id]) }}"><i class="text-primary fas fa-edit"></i></a>
+                                                        <a href="{{ route('emails.delete', ['id' => $sms->id]) }}"
                                                             onclick="return confirm('Bạn có chắc muốn xóa không?');"><i
                                                                 style="color: red;" class="fa fa-trash"
                                                                 aria-hidden="true"></i></a>

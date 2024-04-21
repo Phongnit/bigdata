@@ -13,9 +13,13 @@ return new class extends Migration
     {
         Schema::create('table_sms', function (Blueprint $table) {
             $table->id();
-            $table->text('content');
-            $table->timestamps();
+            $table->string('subject');
+            $table->longText('content');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('table_users');
+            $table->tinyInteger('status');
             $table->softDeletes();
+            $table->timestamps();
         });
     }
 

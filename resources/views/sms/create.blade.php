@@ -113,7 +113,7 @@
                                     <div class="form-group">
                                         <input class="form-control" name="subject" placeholder="Tiêu đề:">
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group-sms">
                                         <label for="">Nội dung:</label>
                                         <textarea id="compose-textarea" name="content" class="form-control" style="height: 300px; display: none;" placeholder="Nội dung:"></textarea>
                                     </div>

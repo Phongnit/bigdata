@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\SmsController;
 use App\Http\Controllers\SubmitController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -50,4 +51,20 @@ Route::prefix('emails')->middleware(\App\Http\Middleware\CheckLogin::class)->gro
     Route::get('/trashed', [MailController::class, 'trashed'])->name('emails.trashed');
     Route::get('/return/{id}', [MailController::class, 'return'])->name('emails.return');
     Route::get('/draft', [MailController::class, 'draft'])->name('emails.draft');
+});
+
+Route::prefix('sms')->middleware(\App\Http\Middleware\CheckLogin::class)->group(function () {
+    Route::get('/', [SmsController::class, 'index'])->name('sms.index');
+    Route::get('/create', [SmsController::class, 'create'])->name('sms.create');
+    Route::post('/create', [SmsController::class, 'store'])->name('sms.create');
+    Route::get('/show/{id}', [SmsController::class, 'show'])->name('sms.show');
+    Route::get('/edit/{id}', [SmsController::class, 'edit'])->name('sms.edit');
+    Route::put('/edit/{id}', [SmsController::class, 'update'])->name('sms.edit');
+    Route::get('/delete/{id}', [SmsController::class, 'delete'])->name('sms.delete');
+    Route::get('/send/{id}', [SmsController::class, 'send'])->name('sms.send');
+    Route::get('/sendmore/{id}', [SmsController::class, 'sendmore'])->name('sms.sendmore');
+    Route::get('/sendall/{id}', [SmsController::class, 'sendall'])->name('sms.sendall');
+    Route::get('/trashed', [SmsController::class, 'trashed'])->name('sms.trashed');
+    Route::get('/return/{id}', [SmsController::class, 'return'])->name('sms.return');
+    Route::get('/draft', [SmsController::class, 'draft'])->name('sms.draft');
 });

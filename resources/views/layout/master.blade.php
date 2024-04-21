@@ -203,14 +203,13 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-widget="control-sidebar" data-controlsidebar-slide="true"
-                        href="#" role="button">
+                    <a class="nav-link" data-widget="control-sidebar" data-controlsidebar-slide="true" href="#"
+                        role="button">
                         <i class="fas fa-th-large"></i>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link"
-                        href="{{route('logout')}}" role="button">
+                    <a class="nav-link" href="{{ route('logout') }}" role="button">
                         <i class="fas fa-sign-out-alt"></i>
                     </a>
                 </li>
@@ -333,7 +332,10 @@
                                         <i class="nav-icon fas fa-copy"></i>
                                         <p>Danh sách</p>
                                         @php
-                                            $countem = DB::table('table_emails')->whereNull('deleted_at')->where('status',1)->count();
+                                            $countem = DB::table('table_emails')
+                                                ->whereNull('deleted_at')
+                                                ->where('status', 1)
+                                                ->count();
                                         @endphp
                                         <span class="badge badge-info right">{{ $countem }}</span>
                                     </a>
@@ -350,7 +352,10 @@
                                         <i class="fas fa-file-signature nav-icon"></i>
                                         <p>Bản nháp</p>
                                         @php
-                                            $countemt = DB::table('table_emails')->whereNull('deleted_at')->where('status',0)->count();
+                                            $countemt = DB::table('table_emails')
+                                                ->whereNull('deleted_at')
+                                                ->where('status', 0)
+                                                ->count();
                                         @endphp
                                         <span class="badge badge-info right">{{ $countemt }}</span>
                                     </a>
@@ -368,6 +373,63 @@
 
                             </ul>
                         </li>
+                        {{-- menu sms --}}
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon far fa-envelope"></i>
+                                <p>
+                                    SMS
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('sms.index') }}" class="nav-link">
+                                        <i class="nav-icon fas fa-copy"></i>
+                                        <p>Danh sách</p>
+                                        @php
+                                            $countem = DB::table('table_sms')
+                                                ->whereNull('deleted_at')
+                                                ->where('status', 1)
+                                                ->count();
+                                        @endphp
+                                        <span class="badge badge-info right">{{ $countem }}</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('sms.create') }}" class="nav-link">
+                                        <i class="fas fa-plus nav-icon"></i>
+
+                                        <p>Tạo mới</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('sms.draft') }}" class="nav-link">
+                                        <i class="fas fa-file-signature nav-icon"></i>
+                                        <p>Bản nháp</p>
+                                        @php
+                                            $countemt = DB::table('table_sms')
+                                                ->whereNull('deleted_at')
+                                                ->where('status', 0)
+                                                ->count();
+                                        @endphp
+                                        <span class="badge badge-info right">{{ $countemt }}</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('sms.trashed') }}" class="nav-link">
+                                        <i class="fas fa-trash-alt nav-icon"></i>
+                                        <p>Thùng rác</p>
+                                        @php
+                                            $countemd = DB::table('table_sms')->whereNotNull('deleted_at')->count();
+                                        @endphp
+                                        <span class="badge badge-info right">{{ $countemd }}</span>
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </li>
+
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->

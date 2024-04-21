@@ -149,5 +149,25 @@ class DatabaseSeeder extends Seeder
                 // 'softdelete' => $softdelete,
             ]);
         }
+
+        $smscount = 50;
+        for ($i = 0; $i < $smscount; $i++) {
+            $subject = $faker->sentence;
+            $content = $faker->paragraphs(5, true);
+            $created_at = Carbon::now()->subDays($faker->numberBetween(1, 30));
+            $status = $faker->numberBetween(0, 1);
+            $user_id = $faker->numberBetween(1, 3);
+            // $softdelete = $faker->numberBetween(0, 1);
+
+            // Tạo bản ghi
+            DB::table('table_sms')->insert([
+                'subject' => $subject,
+                'content' => $content,
+                'created_at' => $created_at,
+                'user_id' => $user_id,
+                'status' => $status,
+                // 'softdelete' => $softdelete,
+            ]);
+        }
     }
 }

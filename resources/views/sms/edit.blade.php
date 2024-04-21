@@ -1,6 +1,6 @@
 @extends('layout.master')
 @section('title')
-    [Edit] {{$emails->subject}}
+    [Edit] {{$sms->subject}}
 @endsection
 @section('main')
     <div class="content-wrapper">
@@ -114,12 +114,12 @@
 
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <input class="form-control" name="subject" placeholder="Tiêu đề:" value="{{$emails->subject}}">
+                                        <input class="form-control" name="subject" placeholder="Tiêu đề:" value="{{$sms->subject}}">
                                     </div>
                                     <div class="form-group">
                                         <label for="">Nội dung:</label>
                                         <textarea id="compose-textarea" name="content" class="form-control" style="height: 300px; display: none;" placeholder="Nội dung:">
-                                            {!!$emails->content!!}
+                                            {!!$sms->content!!}
                                         </textarea>
                                     </div>
                                     <input type="hidden" name="status" id="statusInput" value="">

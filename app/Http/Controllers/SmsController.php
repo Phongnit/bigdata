@@ -24,7 +24,7 @@ class SmsController extends Controller
         }
         $sms = $sms->orderBy('created_at','desc')->where('status',1)->get();
         return view('sms.index', compact('sms'));
-    }
+    } 
     public function create()
     {
         return view('sms.create');
