@@ -256,7 +256,7 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
-                        <li class="nav-item">
+                        <li class="nav-item ">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-address-card"></i>
                                 <p>
@@ -264,7 +264,7 @@
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview">
+                            <ul class="nav nav-treeview" >
                                 <li class="nav-item">
                                     <a href="{{ route('submit.list') }}" class="nav-link">
                                         <i class="nav-icon fas fa-copy"></i>
@@ -290,7 +290,7 @@
                             </ul>
                         </li>
 
-                        <li class="nav-item">
+                        <li class="nav-item ">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-user-circle"></i>
                                 <p>
@@ -299,7 +299,7 @@
 
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview">
+                            <ul class="nav nav-treeview" >
                                 <li class="nav-item">
                                     <a href="#" class="nav-link">
                                         <i class="nav-icon fas fa-copy"></i>
@@ -318,7 +318,7 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item ">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon far fa-envelope"></i>
                                 <p>
@@ -326,7 +326,7 @@
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview">
+                            <ul class="nav nav-treeview" >
                                 <li class="nav-item">
                                     <a href="{{ route('emails.index') }}" class="nav-link">
                                         <i class="nav-icon fas fa-copy"></i>
@@ -374,7 +374,7 @@
                             </ul>
                         </li>
                         {{-- menu sms --}}
-                        <li class="nav-item">
+                        <li class="nav-item ">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon far fa-envelope"></i>
                                 <p>
@@ -382,7 +382,7 @@
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview">
+                            <ul class="nav nav-treeview" >
                                 <li class="nav-item">
                                     <a href="{{ route('sms.index') }}" class="nav-link">
                                         <i class="nav-icon fas fa-copy"></i>
@@ -487,11 +487,11 @@
     <!-- Tempusdominus Bootstrap 4 -->
     <script src="{{ asset('plugins') }}/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
     <!-- Summernote -->
+    <script src="{{ asset('dist')}}/js/adminlte.js"></script>
+
     <script src="{{ asset('plugins') }}/summernote/summernote-bs4.min.js"></script>
     <!-- overlayScrollbars -->
     <script src="{{ asset('plugins') }}/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="{{ asset('dist') }}/js/adminlte.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('dist') }}/js/demo.js"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
@@ -522,23 +522,14 @@
             });
         });
     </script>
-    <!-- jQuery -->
-    <script src="{{ asset('plugins') }}/jquery/jquery.min.js"></script>
-    <!-- Bootstrap 4 -->
-    <script src="{{ asset('plugins') }}/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- Select2 -->
     <script src="{{ asset('plugins') }}/select2/js/select2.full.min.js"></script>
     <!-- Bootstrap4 Duallistbox -->
     <script src="{{ asset('plugins') }}/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
     <!-- InputMask -->
-    <script src="{{ asset('plugins') }}/moment/moment.min.js"></script>
     <script src="{{ asset('plugins') }}/inputmask/jquery.inputmask.min.js"></script>
-    <!-- date-range-picker -->
-    <script src="{{ asset('plugins') }}/daterangepicker/daterangepicker.js"></script>
     <!-- bootstrap color picker -->
     <script src="{{ asset('plugins') }}/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
-    <!-- Tempusdominus Bootstrap 4 -->
-    <script src="{{ asset('plugins') }}/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
     <!-- Bootstrap Switch -->
     <script src="{{ asset('plugins') }}/bootstrap-switch/js/bootstrap-switch.min.js"></script>
     <!-- BS-Stepper -->
@@ -547,11 +538,8 @@
     <script src="{{ asset('plugins') }}/dropzone/min/dropzone.min.js"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset('dist') }}/js/adminlte.min.js"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="{{ asset('dist') }}/js/demo.js"></script>
-    <script src="{{ asset('plugins') }}/summernote/summernote-bs4.min.js"></script>
     <!-- Page specific script -->
-    <script>
+    {{-- <script>
         $(function() {
             //Initialize Select2 Elements
             $('.select2').select2()
@@ -695,13 +683,15 @@
             myDropzone.removeAllFiles(true)
         }
         // DropzoneJS Demo Code End
-    </script>
+    </script> --}}
     <script>
         $(function() {
             //Add text editor
             $('#compose-textarea').summernote()
         })
     </script>
+    <script src="{{ asset('dist')}}/js/adminlte.js"></script>
+
 </body>
 
 </html>
