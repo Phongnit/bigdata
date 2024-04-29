@@ -28,17 +28,127 @@ class DatabaseSeeder extends Seeder
             [
                 'id' => 1,
                 'name' => 'Admin',
-                'created_at' => '2024-04-28 08:33:16',
+                'role_id' => 'administrator',
+                'created_at' => now(),
             ], [
                 'id' => 2,
                 'name' => 'Leader',
-                'created_at' => '2024-04-28 08:33:16',
+                'role_id' => 'leader',
+                'created_at' => now(),
             ], [
                 'id' => 3,
                 'name' => 'Sales',
-                'created_at' => '2024-04-28 08:33:16',
+                'role_id' => 'sales',
+                'created_at' => now(),
             ]
         ]);
+
+        DB::table('table_permission')->insert([
+            [
+                'id' => 1,
+                'route_name' => 'submit.list',
+                'title' => 'Danh sách khách hàng',
+                'created_at' => now(),
+            ], [
+                'id' => 2,
+                'route_name' => 'submit.create',
+                'title' => 'Tạo mới khách hàng',
+                'created_at' => now(),
+            ], [
+                'id' => 3,
+                'route_name' => 'submit.show',
+                'title' => 'Chi tiết khách hàng',
+                'created_at' => now(),
+            ]
+            , [
+                'id' => 4,
+                'route_name' => 'submit.edit',
+                'title' => 'Chỉnh sửa khách hàng',
+                'created_at' => now(),
+            ], [
+                'id' => 5,
+                'route_name' => 'submit.delete',
+                'title' => 'Xóa khách hàng',
+                'created_at' => now(),
+            ],
+            [
+                'id' => 6,
+                'route_name' => 'users.index',
+                'title' => 'Danh sách người dùng',
+                'created_at' => now(),
+            ], [
+                'id' => 7,
+                'route_name' => 'users.create',
+                'title' => 'Tạo mới người dùng',
+                'created_at' => now(),
+            ], [
+                'id' => 8,
+                'route_name' => 'users.show',
+                'title' => 'Chi tiết người dùng',
+                'created_at' => now(),
+            ]
+            , [
+                'id' => 9,
+                'route_name' => 'users.edit',
+                'title' => 'Chỉnh sửa người dùng',
+                'created_at' => now(),
+            ], [
+                'id' => 10,
+                'route_name' => 'users.delete',
+                'title' => 'Xóa người dùng',
+                'created_at' => now(),
+            ],
+            [
+                'id' => 11,
+                'route_name' => 'roles.index',
+                'title' => 'Danh sách roles',
+                'created_at' => now(),
+            ], [
+                'id' => 12,
+                'route_name' => 'roles.create',
+                'title' => 'Tạo mới roles',
+                'created_at' => now(),
+            ], [
+                'id' => 13,
+                'route_name' => 'roles.user',
+                'title' => 'Chi tiết roles',
+                'created_at' => now(),
+            ]
+            , [
+                'id' => 14,
+                'route_name' => 'roles.edit',
+                'title' => 'Chỉnh sửa roles',
+                'created_at' => now(),
+            ], [
+                'id' => 15,
+                'route_name' => 'roles.delete',
+                'title' => 'Xóa roles',
+                'created_at' => now(),
+            ],
+        ]);
+        DB::table('table_role_per')->insert([
+            ['role_id'=>1,'per_id'=>1],
+            ['role_id'=>1,'per_id'=>2],
+            ['role_id'=>1,'per_id'=>3],
+            ['role_id'=>1,'per_id'=>4],
+            ['role_id'=>1,'per_id'=>5],
+            ['role_id'=>1,'per_id'=>6],
+            ['role_id'=>1,'per_id'=>7],
+            ['role_id'=>1,'per_id'=>8],
+            ['role_id'=>1,'per_id'=>9],
+            ['role_id'=>1,'per_id'=>10],
+            ['role_id'=>1,'per_id'=>11],
+            ['role_id'=>1,'per_id'=>12],
+            ['role_id'=>1,'per_id'=>13],
+            ['role_id'=>1,'per_id'=>14],
+            ['role_id'=>1,'per_id'=>15],
+            ['role_id'=>2,'per_id'=>1],
+            ['role_id'=>2,'per_id'=>2],
+            ['role_id'=>2,'per_id'=>3],
+            ['role_id'=>2,'per_id'=>4],
+            ['role_id'=>2,'per_id'=>5],
+        ]);
+
 
         // data lĩnh vực 
         DB::table('table_users')->insert([
@@ -49,6 +159,7 @@ class DatabaseSeeder extends Seeder
                 'email' => 'admin@gmail.com',
                 'password' => Hash::make('admin@123'),
                 'role_id' => 1,
+                'created_at' => now(),
             ], [
                 'id' => 2,
                 'name' => 'leader',
@@ -56,6 +167,7 @@ class DatabaseSeeder extends Seeder
                 'email' => 'leader@gmail.com',
                 'password' => Hash::make('leader@123'),
                 'role_id' => 2,
+                'created_at' => now(),
             ], [
                 'id' => 3,
                 'name' => 'Saler',
@@ -63,6 +175,7 @@ class DatabaseSeeder extends Seeder
                 'email' => 'sale@gmail.com',
                 'password' => Hash::make('sale@123'),
                 'role_id' => 3,
+                'created_at' => now(),
             ]
         ]);
         // data lĩnh vực 
@@ -70,12 +183,15 @@ class DatabaseSeeder extends Seeder
             [
                 'id' => 1,
                 'name' => 'XKLĐ',
+                'created_at' => now(),
             ], [
                 'id' => 2,
                 'name' => 'Du học',
+                'created_at' => now(),
             ], [
                 'id' => 3,
                 'name' => 'Du lịch',
+                'created_at' => now(),
             ]
         ]);
         //data đất nước
@@ -83,24 +199,31 @@ class DatabaseSeeder extends Seeder
             [
                 'id' => 1,
                 'name' => 'Úc',
+                'created_at' => now(),
             ], [
                 'id' => 2,
                 'name' => 'Hàn Quốc',
+                'created_at' => now(),
             ], [
                 'id' => 3,
                 'name' => 'Nhật bản',
+                'created_at' => now(),
             ], [
                 'id' => 4,
                 'name' => 'Mỹ',
+                'created_at' => now(),
             ], [
                 'id' => 5,
                 'name' => 'Pháp',
+                'created_at' => now(),
             ], [
                 'id' => 6,
                 'name' => 'Đức',
+                'created_at' => now(),
             ], [
                 'id' => 7,
                 'name' => 'Trung Quốc',
+                'created_at' => now(),
             ]
         ]);
 

@@ -256,6 +256,7 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
+                        {{-- Quản lý data khách hàng --}}
                         <li class="nav-item ">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-address-card"></i>
@@ -289,7 +290,7 @@
                                 </li>
                             </ul>
                         </li>
-
+                        {{-- Quản lý tài khoản người dùng --}}
                         <li class="nav-item ">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-user-circle"></i>
@@ -345,6 +346,63 @@
                                 </li> --}}
                             </ul>
                         </li>
+                        {{-- Phân quyền người dùng --}}
+                        <li class="nav-item ">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-user-circle"></i>
+                                <p>
+                                    Phân quyền
+                                    <i class="fas fa-angle-left right"></i>
+
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('roles.index') }}" class="nav-link">
+                                        <i class="nav-icon fas fa-copy"></i>
+                                        <p>Danh sách</p>
+                                        @php
+                                            $countem = DB::table('table_role')
+                                                ->whereNull('deleted_at')
+                                                // ->where('status', 1)
+                                                ->count();
+                                        @endphp
+                                        <span class="badge badge-info right">{{ $countem }}</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('roles.create') }}" class="nav-link">
+                                        <i class="fas fa-plus nav-icon"></i>
+
+                                        <p>Tạo mới</p>
+                                    </a>
+                                </li>
+                                {{-- <li class="nav-item">
+            <a href="{{ route('users.draft') }}" class="nav-link">
+                <i class="fas fa-file-signature nav-icon"></i>
+                <p>Bản nháp</p>
+                @php
+                    $countemt = DB::table('table_emails')
+                        ->whereNull('deleted_at')
+                        ->where('status', 0)
+                        ->count();
+                @endphp
+                <span class="badge badge-info right">{{ $countemt }}</span>
+            </a>
+        </li> --}}
+                                {{-- <li class="nav-item">
+            <a href="{{ route('users.trashed') }}" class="nav-link">
+                <i class="fas fa-trash-alt nav-icon"></i>
+                <p>Thùng rác</p>
+                @php
+                    $countemd = DB::table('table_emails')->whereNotNull('deleted_at')->count();
+                @endphp
+                <span class="badge badge-info right">{{ $countemd }}</span>
+            </a>
+        </li> --}}
+                            </ul>
+                        </li>
+                        {{-- Quản lý mailbox --}}
                         <li class="nav-item ">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon far fa-envelope"></i>
@@ -400,7 +458,7 @@
 
                             </ul>
                         </li>
-                        {{-- menu sms --}}
+                        {{-- Quản lý smsbox --}}
                         <li class="nav-item ">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon far fa-envelope"></i>

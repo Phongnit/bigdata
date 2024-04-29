@@ -35,7 +35,7 @@
                             <div class="card-body">
                                 <form action="" method="POST">
                                     @csrf
-                                    @method('PUT')
+                                    @method('put')
 
                                     <div class="form-group">
                                         <label>Tên:</label>

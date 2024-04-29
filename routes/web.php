@@ -3,6 +3,8 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SmsController;
 use App\Http\Controllers\SubmitController;
 use App\Http\Controllers\UserController;
@@ -77,5 +79,16 @@ Route::prefix('users')->middleware(\App\Http\Middleware\CheckLogin::class)->grou
     Route::get('/show/{id}', [UserController::class, 'show'])->name('users.show');
     Route::get('/edit/{id}', [UserController::class, 'edit'])->name('users.edit');
     Route::put('/edit/{id}', [UserController::class, 'update']);
-    Route::get('/delete/{id}', [UserController::class, 'delete'])->name('users.delete');
+    Route::get('/delete/{id}', [UserController::class, 'destroy'])->name('users.delete');
+});
+
+
+Route::prefix('roles')->middleware(\App\Http\Middleware\CheckLogin::class)->group(function () {
+    Route::get('/', [RoleController::class, 'index'])->name('roles.index');
+    Route::get('/create', [RoleController::class, 'create'])->name('roles.create');
+    Route::post('/create', [RoleController::class, 'store']);
+    Route::get('/user/{id}', [RoleController::class, 'show'])->name('roles.user');
+    Route::get('/edit/{id}', [RoleController::class, 'edit'])->name('roles.edit');
+    Route::put('/edit/{id}', [RoleController::class, 'update']);
+    Route::get('/delete/{id}', [RoleController::class, 'delete'])->name('roles.delete');
 });
