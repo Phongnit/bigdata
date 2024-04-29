@@ -31,9 +31,8 @@
                         <div class="card">
                             <div class="card-header"
                                 style="display: flex; flex-wrap: wrap; justify-content: space-between;">
-                                <a class="button btn-success" href="{{ route('submit.create') }}">Thêm mới</a>
-
-                                <div id="filter">
+                                
+                                {{-- <div id="filter">
                                     <div class="amount-flt">
                                         <label for="itemsPerPage">Số phần tử trên mỗi trang:</label>
                                         <select id="itemsPerPage" onchange="changeItemsPerPage()">
@@ -45,28 +44,29 @@
                                     </div>
                                     <form id="search-form" method="GET" style="right: 0;">
                                         <input type="text" name="search" placeholder="Tìm kiếm"
-                                            value="{{ request('search') }}">
+                                        value="{{ request('search') }}">
                                         <select id="country" name="country">
                                             <option value="">Quốc gia</option>
                                             @foreach ($countries as $country)
-                                                <option value="{{ $country->id }}"
-                                                    {{ ($filters['country'] ?? '') == $country->id ? 'selected' : '' }}>
-                                                    {{ $country->name }}
-                                                </option>
+                                            <option value="{{ $country->id }}"
+                                                {{ ($filters['country'] ?? '') == $country->id ? 'selected' : '' }}>
+                                                {{ $country->name }}
+                                            </option>
                                             @endforeach
                                         </select>
                                         <select id="field" name="field">
                                             <option value="">Lĩnh vực</option>
                                             @foreach ($fields as $field)
-                                                <option value="{{ $field->id }}"
-                                                    {{ ($filters['field'] ?? '') == $field->id ? 'selected' : '' }}>
-                                                    {{ $field->name }}
-                                                </option>
+                                            <option value="{{ $field->id }}"
+                                                {{ ($filters['field'] ?? '') == $field->id ? 'selected' : '' }}>
+                                                {{ $field->name }}
+                                            </option>
                                             @endforeach
                                         </select>
                                         <button type="submit">Tìm kiếm</button>
                                     </form>
-                                </div>
+                                </div> --}}
+                                <a class="button btn-success" href="{{ route('submit.create') }}">Thêm mới</a>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
@@ -81,7 +81,7 @@
                                             <th>Lĩnh vực</th>
                                             <th>Quốc gia</th>
                                             <th>Trạng thái</th>
-
+                                            
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -113,7 +113,7 @@
                                         @endforeach
                                     </tbody>
                                 </table>
-                                <div id="pagination-container">
+                                {{-- <div id="pagination-container">
                                     <button onclick="previousPage()">&lt;</button>
                                     <span id="pagination"></span>
                                     <button onclick="nextPage()">&gt;</button>
@@ -122,7 +122,7 @@
                                 <script>
                                     var currentPage = 1;
                                     var recordsPerPage = 10;
-                                    var rows = document.getElementById('example1').getElementsByTagName('tbody')[0].rows;
+                                    var rows = document.getElementById('table-submit').getElementsByTagName('tbody')[0].rows;
                                     var totalRecords = rows.length;
                                     var totalPages = Math.ceil(totalRecords / recordsPerPage);
 
@@ -202,7 +202,7 @@
                                         totalPages = Math.ceil(totalRecords / recordsPerPage);
                                         showPage(1);
                                     }
-                                </script>
+                                </script> --}}
                             </div>
 
                             <!-- /.card-body -->
@@ -230,7 +230,7 @@
                 })
                 .then(response => response.text())
                 .then(data => {
-                    document.getElementById('example1').innerHTML = data;
+                    document.getElementById('table-submit').innerHTML = data;
                 });
         });
     </script>

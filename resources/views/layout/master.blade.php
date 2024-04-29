@@ -264,7 +264,7 @@
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview" >
+                            <ul class="nav nav-treeview">
                                 <li class="nav-item">
                                     <a href="{{ route('submit.list') }}" class="nav-link">
                                         <i class="nav-icon fas fa-copy"></i>
@@ -299,23 +299,50 @@
 
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview" >
+                            <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="{{ route('users.index') }}" class="nav-link">
                                         <i class="nav-icon fas fa-copy"></i>
                                         <p>Danh sách</p>
                                         @php
-                                            $countus = DB::table('table_users')->whereNull('deleted_at')->count();
+                                            $countem = DB::table('table_users')
+                                                ->whereNull('deleted_at')
+                                                // ->where('status', 1)
+                                                ->count();
                                         @endphp
-                                        <span class="badge badge-info right">{{ $countus }}</span>
+                                        <span class="badge badge-info right">{{ $countem }}</span>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="{{ route('users.create') }}" class="nav-link">
                                         <i class="fas fa-plus nav-icon"></i>
-                                        <p>Thêm mới</p>
+
+                                        <p>Tạo mới</p>
                                     </a>
                                 </li>
+                                {{-- <li class="nav-item">
+                                    <a href="{{ route('users.draft') }}" class="nav-link">
+                                        <i class="fas fa-file-signature nav-icon"></i>
+                                        <p>Bản nháp</p>
+                                        @php
+                                            $countemt = DB::table('table_emails')
+                                                ->whereNull('deleted_at')
+                                                ->where('status', 0)
+                                                ->count();
+                                        @endphp
+                                        <span class="badge badge-info right">{{ $countemt }}</span>
+                                    </a>
+                                </li> --}}
+                                {{-- <li class="nav-item">
+                                    <a href="{{ route('users.trashed') }}" class="nav-link">
+                                        <i class="fas fa-trash-alt nav-icon"></i>
+                                        <p>Thùng rác</p>
+                                        @php
+                                            $countemd = DB::table('table_emails')->whereNotNull('deleted_at')->count();
+                                        @endphp
+                                        <span class="badge badge-info right">{{ $countemd }}</span>
+                                    </a>
+                                </li> --}}
                             </ul>
                         </li>
                         <li class="nav-item ">
@@ -326,7 +353,7 @@
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview" >
+                            <ul class="nav nav-treeview">
                                 <li class="nav-item">
                                     <a href="{{ route('emails.index') }}" class="nav-link">
                                         <i class="nav-icon fas fa-copy"></i>
@@ -382,7 +409,7 @@
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview" >
+                            <ul class="nav nav-treeview">
                                 <li class="nav-item">
                                     <a href="{{ route('sms.index') }}" class="nav-link">
                                         <i class="nav-icon fas fa-copy"></i>
@@ -487,7 +514,7 @@
     <!-- Tempusdominus Bootstrap 4 -->
     <script src="{{ asset('plugins') }}/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
     <!-- Summernote -->
-    <script src="{{ asset('dist')}}/js/adminlte.js"></script>
+    <script src="{{ asset('dist') }}/js/adminlte.js"></script>
 
     <script src="{{ asset('plugins') }}/summernote/summernote-bs4.min.js"></script>
     <!-- overlayScrollbars -->
@@ -507,18 +534,46 @@
         $(function() {
             $("#example1").DataTable({
                 "responsive": true,
-                "lengthChange": false,
+                "lengthChange": true,
                 "autoWidth": false,
-                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
+                "language": {
+                    "lengthMenu": "Hiển thị _MENU_ dòng",
+                    "zeroRecords": "Không tìm thấy dòng nào",
+                    "info": "Hiển thị _START_ đến _END_ của _TOTAL_ dòng",
+                    "infoEmpty": "Không có dữ liệu",
+                    "infoFiltered": "(được lọc từ _MAX_ tổng số dòng)",
+                    "search": "Tìm kiếm:",
+                    "paginate": {
+                        "first": "&lt;&lt;",
+                        "last": "&gt;&gt;",
+                        "next": "&gt;",
+                        "previous": "&lt;"
+                    }
+                }
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
             $('#example2').DataTable({
                 "paging": true,
                 "lengthChange": false,
                 "searching": false,
-                "ordering": true,
+                "ordering": false,
                 "info": true,
                 "autoWidth": false,
                 "responsive": true,
+                "language": {
+                    "lengthMenu": "Hiển thị _MENU_ dòng",
+                    "zeroRecords": "Không tìm thấy dòng nào",
+                    "info": "Hiển thị _START_ đến _END_ của _TOTAL_ dòng",
+                    "infoEmpty": "Không có dữ liệu",
+                    "infoFiltered": "(được lọc từ _MAX_ tổng số dòng)",
+                    "search": "Tìm kiếm:",
+                    "paginate": {
+                        "first": "&lt;&lt;",
+                        "last": "&gt;&gt;",
+                        "next": "&gt;",
+                        "previous": "&lt;"
+                    }
+                }
             });
         });
     </script>
@@ -690,7 +745,7 @@
             $('#compose-textarea').summernote()
         })
     </script>
-    <script src="{{ asset('dist')}}/js/adminlte.js"></script>
+    <script src="{{ asset('dist') }}/js/adminlte.js"></script>
 
 </body>
 

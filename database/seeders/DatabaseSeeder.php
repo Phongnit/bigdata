@@ -28,12 +28,15 @@ class DatabaseSeeder extends Seeder
             [
                 'id' => 1,
                 'name' => 'Admin',
+                'created_at' => '2024-04-28 08:33:16',
             ], [
                 'id' => 2,
                 'name' => 'Leader',
+                'created_at' => '2024-04-28 08:33:16',
             ], [
                 'id' => 3,
                 'name' => 'Sales',
+                'created_at' => '2024-04-28 08:33:16',
             ]
         ]);
 

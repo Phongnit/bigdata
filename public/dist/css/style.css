@@ -61,3 +61,12 @@ div#filter {
     background-color: #dc3545;
     border-color:#dc3545;
 }
+div#example1_length {
+    margin-right: 15px;
+}
+div#example1_length select.custom-select {
+    width: 50px;
+}
+.dt-buttons.btn-group.flex-wrap {
+    margin-bottom: 8px;
+}

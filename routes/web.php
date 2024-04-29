@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\SmsController;
 use App\Http\Controllers\SubmitController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -67,4 +68,14 @@ Route::prefix('sms')->middleware(\App\Http\Middleware\CheckLogin::class)->group(
     Route::get('/trashed', [SmsController::class, 'trashed'])->name('sms.trashed');
     Route::get('/return/{id}', [SmsController::class, 'return'])->name('sms.return');
     Route::get('/draft', [SmsController::class, 'draft'])->name('sms.draft');
+});
+
+Route::prefix('users')->middleware(\App\Http\Middleware\CheckLogin::class)->group(function () {
+    Route::get('/', [UserController::class, 'index'])->name('users.index');
+    Route::get('/create', [UserController::class, 'create'])->name('users.create');
+    Route::post('/create', [UserController::class, 'store']);
+    Route::get('/show/{id}', [UserController::class, 'show'])->name('users.show');
+    Route::get('/edit/{id}', [UserController::class, 'edit'])->name('users.edit');
+    Route::put('/edit/{id}', [UserController::class, 'update']);
+    Route::get('/delete/{id}', [UserController::class, 'delete'])->name('users.delete');
 });
