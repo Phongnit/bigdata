@@ -55,10 +55,16 @@
 
 
 </head>
+@php
+    use App\Models\Role;
+    $user = Auth::user();
+    $roles = Role::find($user->role_id);
+    $roles = $roles->permission()->pluck('route_name');
+    $data = $roles->toArray();
+@endphp
 
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
-
         <!-- Preloader -->
         <div class="preloader flex-column justify-content-center align-items-center">
             <img class="animation__shake" src="{{ asset('dist') }}/img/AdminLTELogo.png" alt="AdminLTELogo"
@@ -235,7 +241,7 @@
                             alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">Admin</a>
+                        <a href="#" class="d-block">{{ Auth::user()->name }}</a>
                     </div>
                 </div>
 
@@ -265,29 +271,37 @@
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
+
+
                             <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{ route('submit.list') }}" class="nav-link">
-                                        <i class="nav-icon fas fa-copy"></i>
-                                        <p>Danh sách</p>
-                                        @php
-                                            $countsm = DB::table('table_submit')->whereNull('deleted_at')->count();
-                                        @endphp
-                                        <span class="badge badge-info right">{{ $countsm }}</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('submit.create') }}" class="nav-link">
-                                        <i class="fas fa-plus nav-icon"></i>
-                                        <p>Thêm mới</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="fas fa-users nav-icon"></i>
-                                        <p>Phân quyền</p>
-                                    </a>
-                                </li>
+                                @if ( $user->role_id == 1 ||  in_array('submit.list', $data))
+                                    <li class="nav-item">
+                                        <a href="{{ route('submit.list') }}" class="nav-link">
+                                            <i class="nav-icon fas fa-copy"></i>
+                                            <p>Danh sách</p>
+                                            @php
+                                                $countsm = DB::table('table_submit')->whereNull('deleted_at')->count();
+                                            @endphp
+                                            <span class="badge badge-info right">{{ $countsm }}</span>
+                                        </a>
+                                    </li>
+                                @endif
+                                @if ( $user->role_id == 1 ||  in_array('submit.create', $data))
+                                    <li class="nav-item">
+                                        <a href="{{ route('submit.create') }}" class="nav-link">
+                                            <i class="fas fa-plus nav-icon"></i>
+                                            <p>Thêm mới</p>
+                                        </a>
+                                    </li>
+                                @endif
+                                @if ( $user->role_id == 1 ||  in_array('submit.list', $data))
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link">
+                                            <i class="fas fa-users nav-icon"></i>
+                                            <p>Phân quyền</p>
+                                        </a>
+                                    </li>
+                                @endif
                             </ul>
                         </li>
                         {{-- Quản lý tài khoản người dùng --}}
@@ -300,27 +314,32 @@
 
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{ route('users.index') }}" class="nav-link">
-                                        <i class="nav-icon fas fa-copy"></i>
-                                        <p>Danh sách</p>
-                                        @php
-                                            $countem = DB::table('table_users')
-                                                ->whereNull('deleted_at')
-                                                // ->where('status', 1)
-                                                ->count();
-                                        @endphp
-                                        <span class="badge badge-info right">{{ $countem }}</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('users.create') }}" class="nav-link">
-                                        <i class="fas fa-plus nav-icon"></i>
 
-                                        <p>Tạo mới</p>
-                                    </a>
-                                </li>
+                            <ul class="nav nav-treeview">
+                                @if ( $user->role_id == 1 ||  in_array('users.index', $data))
+                                    <li class="nav-item">
+                                        <a href="{{ route('users.index') }}" class="nav-link">
+                                            <i class="nav-icon fas fa-copy"></i>
+                                            <p>Danh sách</p>
+                                            @php
+                                                $countem = DB::table('table_users')
+                                                    ->whereNull('deleted_at')
+                                                    // ->where('status', 1)
+                                                    ->count();
+                                            @endphp
+                                            <span class="badge badge-info right">{{ $countem }}</span>
+                                        </a>
+                                    </li>
+                                @endif
+                                @if ( $user->role_id == 1 ||  in_array('users.create', $data))
+                                    <li class="nav-item">
+                                        <a href="{{ route('users.create') }}" class="nav-link">
+                                            <i class="fas fa-plus nav-icon"></i>
+
+                                            <p>Tạo mới</p>
+                                        </a>
+                                    </li>
+                                @endif
                                 {{-- <li class="nav-item">
                                     <a href="{{ route('users.draft') }}" class="nav-link">
                                         <i class="fas fa-file-signature nav-icon"></i>
@@ -357,49 +376,30 @@
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{ route('roles.index') }}" class="nav-link">
-                                        <i class="nav-icon fas fa-copy"></i>
-                                        <p>Danh sách</p>
-                                        @php
-                                            $countem = DB::table('table_role')
-                                                ->whereNull('deleted_at')
-                                                // ->where('status', 1)
-                                                ->count();
-                                        @endphp
-                                        <span class="badge badge-info right">{{ $countem }}</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('roles.create') }}" class="nav-link">
-                                        <i class="fas fa-plus nav-icon"></i>
+                                @if ( $user->role_id == 1 ||  in_array('roles.index', $data))
+                                    <li class="nav-item">
+                                        <a href="{{ route('roles.index') }}" class="nav-link">
+                                            <i class="nav-icon fas fa-copy"></i>
+                                            <p>Danh sách</p>
+                                            @php
+                                                $countem = DB::table('table_role')
+                                                    ->whereNull('deleted_at')
+                                                    // ->where('status', 1)
+                                                    ->count();
+                                            @endphp
+                                            <span class="badge badge-info right">{{ $countem }}</span>
+                                        </a>
+                                    </li>
+                                @endif
+                                @if ( $user->role_id == 1 ||  in_array('roles.create', $data))
+                                    <li class="nav-item">
+                                        <a href="{{ route('roles.create') }}" class="nav-link">
+                                            <i class="fas fa-plus nav-icon"></i>
 
-                                        <p>Tạo mới</p>
-                                    </a>
-                                </li>
-                                {{-- <li class="nav-item">
-            <a href="{{ route('users.draft') }}" class="nav-link">
-                <i class="fas fa-file-signature nav-icon"></i>
-                <p>Bản nháp</p>
-                @php
-                    $countemt = DB::table('table_emails')
-                        ->whereNull('deleted_at')
-                        ->where('status', 0)
-                        ->count();
-                @endphp
-                <span class="badge badge-info right">{{ $countemt }}</span>
-            </a>
-        </li> --}}
-                                {{-- <li class="nav-item">
-            <a href="{{ route('users.trashed') }}" class="nav-link">
-                <i class="fas fa-trash-alt nav-icon"></i>
-                <p>Thùng rác</p>
-                @php
-                    $countemd = DB::table('table_emails')->whereNotNull('deleted_at')->count();
-                @endphp
-                <span class="badge badge-info right">{{ $countemd }}</span>
-            </a>
-        </li> --}}
+                                            <p>Tạo mới</p>
+                                        </a>
+                                    </li>
+                                @endif
                             </ul>
                         </li>
                         {{-- Quản lý mailbox --}}
@@ -412,53 +412,64 @@
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{ route('emails.index') }}" class="nav-link">
-                                        <i class="nav-icon fas fa-copy"></i>
-                                        <p>Danh sách</p>
-                                        @php
-                                            $countem = DB::table('table_emails')
-                                                ->whereNull('deleted_at')
-                                                ->where('status', 1)
-                                                ->count();
-                                        @endphp
-                                        <span class="badge badge-info right">{{ $countem }}</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('emails.create') }}" class="nav-link">
-                                        <i class="fas fa-plus nav-icon"></i>
+                                @if ( $user->role_id == 1 ||  in_array('emails.index', $data))
+                                    <li class="nav-item">
+                                        <a href="{{ route('emails.index') }}" class="nav-link">
+                                            <i class="nav-icon fas fa-copy"></i>
+                                            <p>Danh sách</p>
+                                            @php
+                                                $countem = DB::table('table_emails')
+                                                    ->whereNull('deleted_at')
+                                                    ->where('status', 1)
+                                                    ->count();
+                                            @endphp
+                                            <span class="badge badge-info right">{{ $countem }}</span>
+                                        </a>
+                                    </li>
+                                @endif
+                                @if ( $user->role_id == 1 ||  in_array('emails.create', $data))
+                                    <li class="nav-item">
+                                        <a href="{{ route('emails.create') }}" class="nav-link">
+                                            <i class="fas fa-plus nav-icon"></i>
 
-                                        <p>Tạo mới</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('emails.draft') }}" class="nav-link">
-                                        <i class="fas fa-file-signature nav-icon"></i>
-                                        <p>Bản nháp</p>
-                                        @php
-                                            $countemt = DB::table('table_emails')
-                                                ->whereNull('deleted_at')
-                                                ->where('status', 0)
-                                                ->count();
-                                        @endphp
-                                        <span class="badge badge-info right">{{ $countemt }}</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('emails.trashed') }}" class="nav-link">
-                                        <i class="fas fa-trash-alt nav-icon"></i>
-                                        <p>Thùng rác</p>
-                                        @php
-                                            $countemd = DB::table('table_emails')->whereNotNull('deleted_at')->count();
-                                        @endphp
-                                        <span class="badge badge-info right">{{ $countemd }}</span>
-                                    </a>
-                                </li>
+                                            <p>Tạo mới</p>
+                                        </a>
+                                    </li>
+                                @endif
+                                @if ( $user->role_id == 1 ||  in_array('emails.draft', $data))
+                                    <li class="nav-item">
+                                        <a href="{{ route('emails.draft') }}" class="nav-link">
+                                            <i class="fas fa-file-signature nav-icon"></i>
+                                            <p>Bản nháp</p>
+                                            @php
+                                                $countemt = DB::table('table_emails')
+                                                    ->whereNull('deleted_at')
+                                                    ->where('status', 0)
+                                                    ->count();
+                                            @endphp
+                                            <span class="badge badge-info right">{{ $countemt }}</span>
+                                        </a>
+                                    </li>
+                                @endif
+                                @if ( $user->role_id == 1 ||  in_array('emails.trashed', $data))
+                                    <li class="nav-item">
+                                        <a href="{{ route('emails.trashed') }}" class="nav-link">
+                                            <i class="fas fa-trash-alt nav-icon"></i>
+                                            <p>Thùng rác</p>
+                                            @php
+                                                $countemd = DB::table('table_emails')
+                                                    ->whereNotNull('deleted_at')
+                                                    ->count();
+                                            @endphp
+                                            <span class="badge badge-info right">{{ $countemd }}</span>
+                                        </a>
+                                    </li>
+                                @endif
 
                             </ul>
                         </li>
                         {{-- Quản lý smsbox --}}
+
                         <li class="nav-item ">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon far fa-envelope"></i>
@@ -468,49 +479,57 @@
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{ route('sms.index') }}" class="nav-link">
-                                        <i class="nav-icon fas fa-copy"></i>
-                                        <p>Danh sách</p>
-                                        @php
-                                            $countem = DB::table('table_sms')
-                                                ->whereNull('deleted_at')
-                                                ->where('status', 1)
-                                                ->count();
-                                        @endphp
-                                        <span class="badge badge-info right">{{ $countem }}</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('sms.create') }}" class="nav-link">
-                                        <i class="fas fa-plus nav-icon"></i>
+                                @if ( $user->role_id == 1 ||  in_array('sms.index', $data))
+                                    <li class="nav-item">
+                                        <a href="{{ route('sms.index') }}" class="nav-link">
+                                            <i class="nav-icon fas fa-copy"></i>
+                                            <p>Danh sách</p>
+                                            @php
+                                                $countem = DB::table('table_sms')
+                                                    ->whereNull('deleted_at')
+                                                    ->where('status', 1)
+                                                    ->count();
+                                            @endphp
+                                            <span class="badge badge-info right">{{ $countem }}</span>
+                                        </a>
+                                    </li>
+                                @endif
+                                @if ( $user->role_id == 1 ||  in_array('sms.create', $data))
+                                    <li class="nav-item">
+                                        <a href="{{ route('sms.create') }}" class="nav-link">
+                                            <i class="fas fa-plus nav-icon"></i>
 
-                                        <p>Tạo mới</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('sms.draft') }}" class="nav-link">
-                                        <i class="fas fa-file-signature nav-icon"></i>
-                                        <p>Bản nháp</p>
-                                        @php
-                                            $countemt = DB::table('table_sms')
-                                                ->whereNull('deleted_at')
-                                                ->where('status', 0)
-                                                ->count();
-                                        @endphp
-                                        <span class="badge badge-info right">{{ $countemt }}</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="{{ route('sms.trashed') }}" class="nav-link">
-                                        <i class="fas fa-trash-alt nav-icon"></i>
-                                        <p>Thùng rác</p>
-                                        @php
-                                            $countemd = DB::table('table_sms')->whereNotNull('deleted_at')->count();
-                                        @endphp
-                                        <span class="badge badge-info right">{{ $countemd }}</span>
-                                    </a>
-                                </li>
+                                            <p>Tạo mới</p>
+                                        </a>
+                                    </li>
+                                @endif
+                                @if ( $user->role_id == 1 ||  in_array('sms.draft', $data))
+                                    <li class="nav-item">
+                                        <a href="{{ route('sms.draft') }}" class="nav-link">
+                                            <i class="fas fa-file-signature nav-icon"></i>
+                                            <p>Bản nháp</p>
+                                            @php
+                                                $countemt = DB::table('table_sms')
+                                                    ->whereNull('deleted_at')
+                                                    ->where('status', 0)
+                                                    ->count();
+                                            @endphp
+                                            <span class="badge badge-info right">{{ $countemt }}</span>
+                                        </a>
+                                    </li>
+                                @endif
+                                @if ( $user->role_id == 1 ||  in_array('sms.trashed', $data))
+                                    <li class="nav-item">
+                                        <a href="{{ route('sms.trashed') }}" class="nav-link">
+                                            <i class="fas fa-trash-alt nav-icon"></i>
+                                            <p>Thùng rác</p>
+                                            @php
+                                                $countemd = DB::table('table_sms')->whereNotNull('deleted_at')->count();
+                                            @endphp
+                                            <span class="badge badge-info right">{{ $countemd }}</span>
+                                        </a>
+                                    </li>
+                                @endif
 
                             </ul>
                         </li>
@@ -519,6 +538,20 @@
                 </nav>
                 <!-- /.sidebar-menu -->
             </div>
+            @if (session('error'))
+                <div class="alert alert-error alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <h5><i class="icon fas fa-check"></i> Lỗi !</h5>
+                    {{ session('error') }}
+                </div>
+            @endif
+            @if (session('success'))
+                <div class="alert alert-success alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <h5><i class="icon fas fa-check"></i> Thành công !</h5>
+                    {{ session('success') }}
+                </div>
+            @endif
             <!-- /.sidebar -->
         </aside>
 

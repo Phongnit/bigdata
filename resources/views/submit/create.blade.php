@@ -99,7 +99,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fas fa-comment"></i></span>
                                             </div>
-                                            <input type="text" name="description" class="form-control">
+                                            <textarea type="text" name="description" cols="30" rows="3" class="form-control"></textarea>
                                         </div>
                                         <!-- /.input group -->
                                     </div>
@@ -112,7 +112,11 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fas fa-cog"></i></span>
                                             </div>
-                                            <input type="text" name="fld_id" class="form-control">
+                                            <select name="fld_id" class="form-control">
+                                                @foreach ($field as $fields)
+                                                    <option value="{{$fields->id}}">{{$fields->name}}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         <!-- /.input group -->
                                     </div>
@@ -125,7 +129,11 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="fa fa-globe" aria-hidden="true"></i></span>
                                             </div>
-                                            <input type="text" name="cty_id" class="form-control">
+                                            <select name="cty_id" class="form-control">
+                                                @foreach ($country as $countrys)
+                                                    <option value="{{$countrys->id}}">{{$countrys->name}}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         <!-- /.input group -->
                                     </div>

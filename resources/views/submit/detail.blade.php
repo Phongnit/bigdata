@@ -99,8 +99,8 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-comment"></i></span>
                                         </div>
-                                        <input type="text" name="description" class="form-control"
-                                            value="{{ $submits->description }}" readonly>
+                                        <textarea type="text" name="description" cols="30" rows="3" class="form-control" readonly>{{$submits->description}}</textarea>
+
                                     </div>
                                     <!-- /.input group -->
                                 </div>

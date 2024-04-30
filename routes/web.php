@@ -30,17 +30,17 @@ Route::prefix('/')->middleware(\App\Http\Middleware\CheckLogin::class)->group(fu
     Route::get('/', [HomeController::class, 'index'])->name('dashboard');
 });
 
-Route::prefix('submit')->middleware(\App\Http\Middleware\CheckLogin::class)->group(function () {
+Route::prefix('submit')->middleware(\App\Http\Middleware\CheckRole::class)->group(function () {
     Route::get('/', [SubmitController::class, 'list'])->name('submit.list');
     Route::get('/create', [SubmitController::class, 'create'])->name('submit.create');
-    Route::post('/create', [SubmitController::class, 'store']);
+    Route::post('/create', [SubmitController::class, 'store'])->name('submit.create');
     Route::get('/show/{id}', [SubmitController::class, 'show'])->name('submit.show');
     Route::get('/edit/{id}', [SubmitController::class, 'edit'])->name('submit.edit');
-    Route::put('/edit/{id}', [SubmitController::class, 'update']);
+    Route::put('/edit/{id}', [SubmitController::class, 'update'])->name('submit.edit');
     Route::get('/delete/{id}', [SubmitController::class, 'delete'])->name('submit.delete');
 });
 
-Route::prefix('emails')->middleware(\App\Http\Middleware\CheckLogin::class)->group(function () {
+Route::prefix('emails')->middleware(\App\Http\Middleware\CheckRole::class)->group(function () {
     Route::get('/', [MailController::class, 'index'])->name('emails.index');
     Route::get('/create', [MailController::class, 'create'])->name('emails.create');
     Route::post('/create', [MailController::class, 'store'])->name('emails.create');
@@ -56,7 +56,7 @@ Route::prefix('emails')->middleware(\App\Http\Middleware\CheckLogin::class)->gro
     Route::get('/draft', [MailController::class, 'draft'])->name('emails.draft');
 });
 
-Route::prefix('sms')->middleware(\App\Http\Middleware\CheckLogin::class)->group(function () {
+Route::prefix('sms')->middleware(\App\Http\Middleware\CheckRole::class)->group(function () {
     Route::get('/', [SmsController::class, 'index'])->name('sms.index');
     Route::get('/create', [SmsController::class, 'create'])->name('sms.create');
     Route::post('/create', [SmsController::class, 'store'])->name('sms.create');
@@ -72,23 +72,23 @@ Route::prefix('sms')->middleware(\App\Http\Middleware\CheckLogin::class)->group(
     Route::get('/draft', [SmsController::class, 'draft'])->name('sms.draft');
 });
 
-Route::prefix('users')->middleware(\App\Http\Middleware\CheckLogin::class)->group(function () {
+Route::prefix('users')->middleware(\App\Http\Middleware\CheckRole::class)->group(function () {
     Route::get('/', [UserController::class, 'index'])->name('users.index');
     Route::get('/create', [UserController::class, 'create'])->name('users.create');
-    Route::post('/create', [UserController::class, 'store']);
+    Route::post('/create', [UserController::class, 'store'])->name('users.create');
     Route::get('/show/{id}', [UserController::class, 'show'])->name('users.show');
     Route::get('/edit/{id}', [UserController::class, 'edit'])->name('users.edit');
-    Route::put('/edit/{id}', [UserController::class, 'update']);
+    Route::put('/edit/{id}', [UserController::class, 'update'])->name('users.edit');
     Route::get('/delete/{id}', [UserController::class, 'destroy'])->name('users.delete');
 });
 
 
-Route::prefix('roles')->middleware(\App\Http\Middleware\CheckLogin::class)->group(function () {
+Route::prefix('roles')->middleware(\App\Http\Middleware\CheckRole::class)->group(function () {
     Route::get('/', [RoleController::class, 'index'])->name('roles.index');
     Route::get('/create', [RoleController::class, 'create'])->name('roles.create');
-    Route::post('/create', [RoleController::class, 'store']);
+    Route::post('/create', [RoleController::class, 'store'])->name('roles.create');
     Route::get('/user/{id}', [RoleController::class, 'show'])->name('roles.user');
     Route::get('/edit/{id}', [RoleController::class, 'edit'])->name('roles.edit');
-    Route::put('/edit/{id}', [RoleController::class, 'update']);
+    Route::put('/edit/{id}', [RoleController::class, 'update'])->name('roles.edit');
     Route::get('/delete/{id}', [RoleController::class, 'delete'])->name('roles.delete');
 });

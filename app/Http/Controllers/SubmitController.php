@@ -44,7 +44,9 @@ class SubmitController extends Controller
     }
     public function create()
     {
-        return view('submit.create');
+        $field = Field::all();
+        $country = Country::all();
+        return view('submit.create', compact('field', 'country'));
     }
     public function store(Request $request)
     {

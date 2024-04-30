@@ -125,6 +125,138 @@ class DatabaseSeeder extends Seeder
                 'title' => 'Xóa roles',
                 'created_at' => now(),
             ],
+            [
+                'id' => 16,
+                'route_name' => 'emails.index',
+                'title' => 'Danh sách Email',
+                'created_at' => now(),
+            ],
+            [
+                'id' => 17,
+                'route_name' => 'emails.create',
+                'title' => 'Tạo mới email',
+                'created_at' => now(),
+            ],
+            [
+                'id' => 18,
+                'route_name' => 'emails.show',
+                'title' => 'Xem chi tiết email',
+                'created_at' => now(),
+            ],
+            [
+                'id' => 19,
+                'route_name' => 'emails.edit',
+                'title' => 'Chỉnh sửa email',
+                'created_at' => now(),
+            ],
+            [
+                'id' => 20,
+                'route_name' => 'emails.delete',
+                'title' => 'Xóa email',
+                'created_at' => now(),
+            ],
+            [
+                'id' => 21,
+                'route_name' => 'emails.send',
+                'title' => 'Gửi email',
+                'created_at' => now(),
+            ],
+            [
+                'id' => 22,
+                'route_name' => 'emails.sendmore',
+                'title' => 'Gửi email theo bộ lọc',
+                'created_at' => now(),
+            ],
+            [
+                'id' => 23,
+                'route_name' => 'emails.sendall',
+                'title' => 'Gửi email cho tất cả',
+                'created_at' => now(),
+            ],
+            [
+                'id' => 24,
+                'route_name' => 'emails.trashed',
+                'title' => 'Xem thùng rác Email',
+                'created_at' => now(),
+            ],
+            [
+                'id' => 25,
+                'route_name' => 'emails.return',
+                'title' => 'Hoàn lại Email',
+                'created_at' => now(),
+            ],
+            [
+                'id' => 26,
+                'route_name' => 'emails.draft',
+                'title' => 'Xem bản nháp Email',
+                'created_at' => now(),
+            ],
+ [
+                'id' => 27,
+                'route_name' => 'sms.index',
+                'title' => 'Danh sách SMS',
+                'created_at' => now(),
+            ],
+            [
+                'id' => 28,
+                'route_name' => 'sms.create',
+                'title' => 'Tạo mới SMS',
+                'created_at' => now(),
+            ],
+            [
+                'id' => 29,
+                'route_name' => 'sms.show',
+                'title' => 'Xem chi tiết SMS',
+                'created_at' => now(),
+            ],
+            [
+                'id' => 30,
+                'route_name' => 'sms.edit',
+                'title' => 'Chỉnh sửa SMS',
+                'created_at' => now(),
+            ],
+            [
+                'id' => 31,
+                'route_name' => 'sms.delete',
+                'title' => 'Xóa SMS',
+                'created_at' => now(),
+            ],
+            [
+                'id' => 32,
+                'route_name' => 'sms.send',
+                'title' => 'Gửi SMS',
+                'created_at' => now(),
+            ],
+            [
+                'id' => 33,
+                'route_name' => 'sms.sendmore',
+                'title' => 'Gửi SMS theo bộ lọc',
+                'created_at' => now(),
+            ],
+            [
+                'id' => 34,
+                'route_name' => 'sms.sendall',
+                'title' => 'Gửi SMS cho tất cả',
+                'created_at' => now(),
+            ],
+            [
+                'id' => 35,
+                'route_name' => 'sms.trashed',
+                'title' => 'Xem thùng rác SMS',
+                'created_at' => now(),
+            ],
+            [
+                'id' => 36,
+                'route_name' => 'sms.return',
+                'title' => 'Hoàn lại SMS',
+                'created_at' => now(),
+            ],
+            [
+                'id' => 37,
+                'route_name' => 'sms.draft',
+                'title' => 'Xem bản nháp SMS',
+                'created_at' => now(),
+            ],
         ]);
         DB::table('table_role_per')->insert([
             ['role_id'=>1,'per_id'=>1],
@@ -227,11 +359,94 @@ class DatabaseSeeder extends Seeder
             ]
         ]);
 
+        DB::table('table_submit')->insert([
+            [
+                'phone' => '098 431 7333',
+                'name' => 'Lò Lâm Sung',
+                'email' => 'lolamsungdb@gmail.com',
+                'description' => '"Tôi sinh 12/1974, có bằng TN ĐH Luật, hiện đang là CC HC NN, muốn tìm cơ hội đi lao động FAM bên Úc, cần tư vấn: (1) với độ tuội như vậy có đi đc không, hai là tôi CHỉ đặt ra là đi lao động chân tay thôi có đc không, mong TV giúp. Xin cam ơn CT"',
+                'fld_id' => '2',
+                'cty_id' => '3',
+                'created_at' => now(),
+            ],
+            [
+                'phone' => '012 353 4543',
+                'name' => 'Nguyễn thị ngọc bích',
+                'email' => 'Ngocbichnguyen2412@gmail.com',
+                'description' => 'Xkld ang Đức',
+                'fld_id' => '1',
+                'cty_id' => '6',
+                'created_at' => now(),
+            ],
+            [
+                'phone' => '174 789 4663',
+                'name' => 'nguyễn đình đoàn',
+                'email' => 'dinhdoancute.91@yahoo.com',
+                'description' => 'Tôi đang muốn tìm hiểu kỹ hơn về việc đi lao động New Zealand, mong các bạn liên hệ tư vấn kỹ hơn giúp tôi về thủ tục và chi phí lao động ở nước này với ạ. Xin cảm ơn',
+                'fld_id' => '1',
+                'cty_id' => '6',
+                'created_at' => now(),
+            ],
+            [
+                'phone' => '+17046083757',
+                'name' => 'Vũ thị thảo thuý',
+                'email' => 'eglover@hotmail.com',
+                'description' => '"Xklđ mỹ khó không ạ  Cần điều kiện ntn và  chi phí nhiều không ạ  Và công việc nó là những công việc gì v ạ "',
+                'fld_id' => '1',
+                'cty_id' => '5',
+                'created_at' => now(),
+            ],
+            [
+                'phone' => '435-567-7467',
+                'name' => 'Le quang trí',
+                'email' => 'Lequangtri93@gmail.Com',
+                'description' => 'Xuất khẩu lao động nước ngoài',
+                'fld_id' => '3',
+                'cty_id' => '3',
+                'created_at' => now(),
+            ],
+            [
+                'phone' => '364.398.9204',
+                'name' => 'Tham Tran',
+                'email' => 'dedrick.walsh@yahoo.com',
+                'description' => 'tv du hoc uc , lao đông',
+                'fld_id' => '2',
+                'cty_id' => '3',
+                'created_at' => now(),
+            ],
+            [
+                'phone' => '+1-820-264-1576',
+                'name' => 'Nguyen Phuong',
+                'email' => 'serena.gottlieb@yahoo.com',
+                'description' => 'Tư vấn mua nhà đất ở Canada cho người chưa định cư',
+                'fld_id' => '1',
+                'cty_id' => '7',
+                'created_at' => now(),
+            ],
+            [
+                'phone' => '+1 (720) 630-7620',
+                'name' => 'Tran quoc thinh',
+                'email' => 'Tranquangthuong1968@gamil.com',
+                'description' => 'Qua duc di lam an',
+                'fld_id' => '2',
+                'cty_id' => '1',
+                'created_at' => now(),
+            ],
+            [
+                'phone' => '601-421-7930',
+                'name' => 'Trần Thị ánh Tuyết',
+                'email' => 'aniyah.lebsack@yahoo.com',
+                'description' => 'Nhân viên buồn phòng',
+                'fld_id' => '1',
+                'cty_id' => '6',
+                'created_at' => now(),
+            ],
+        ]);
 
         $faker = Faker::create();
 
         // Số lượng bản ghi cần tạo
-        $recordCount = 500;
+        $recordCount = 491;
 
         for ($i = 0; $i < $recordCount; $i++) {
             $phone = $faker->phoneNumber;
@@ -295,5 +510,6 @@ class DatabaseSeeder extends Seeder
                 // 'softdelete' => $softdelete,
             ]);
         }
+
     }
 }

@@ -47,6 +47,7 @@ class RoleController extends Controller
      */
     public function show(string $id)
     {
+        $roles = Role::find($id);
         return view('roles.user');
     }
 
