@@ -79,6 +79,7 @@ class SmsController extends Controller
         }
         return redirect()->back()->with('success', 'Đã xóa thành công !');
     }
+    // giao diện gửi chọn customer gửi mail 
     public function send(Request $request,$id)
     {
         $search = $request->input('search');
@@ -107,31 +108,37 @@ class SmsController extends Controller
         // $submits = $submits->paginate(5);
 
         if ($request->ajax()) {
-            return view('sms.send', compact('submits', 'countries', 'fields','SMS'));
+            return view('sms.send', compact('submits', 'countries', 'fields','sms'));
         }
 
-        return view('sms.send', compact('submits', 'countries', 'fields','SMS'));
+        return view('sms.send', compact('submits', 'countries', 'fields','sms'));
 
     }
+    // gửi sms theo bộ lọc 
     public function sendmore(Request $request,$id)
     {
+
         return redirect()->route('sms.index')->with('success', 'Gửi mail thành công');
     }
+    // gửi sms cho tất cả 
     public function sendall(Request $request)
     {
         return redirect()->route('sms.index')->with('success', 'Gửi mail thành công.');
     }
+    // xem thùng rác 
     public function trashed()
     {
         $sms = SMS::onlyTrashed()->orderBy('created_at','desc')->get();
         return view('sms.trashed', compact('sms'));
     }
+    // hoàn lại SMS đã xóa 
     public function return($id){
         $sms = SMS::withTrashed()->where('id', $id)->first();
         $sms->deleted_at = null;
         $sms->save();
         return redirect()->route('sms.trashed')->with('success', 'Đã hoàn lại SMS');
     }
+    // xem thùng bản nháp 
     public function draft(){
         $sms = SMS::query();
         $sms = $sms->where('status', 0)->orderBy('created_at','desc')->get();

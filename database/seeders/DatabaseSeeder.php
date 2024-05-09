@@ -32,13 +32,31 @@ class DatabaseSeeder extends Seeder
                 'created_at' => now(),
             ], [
                 'id' => 2,
-                'name' => 'Leader',
-                'role_id' => 'leader',
+                'name' => 'Leader Sale',
+                'role_id' => 'leader_sale',
                 'created_at' => now(),
             ], [
                 'id' => 3,
-                'name' => 'Sales',
-                'role_id' => 'sales',
+                'name' => 'Leader Marketing',
+                'role_id' => 'leader_marketing',
+                'created_at' => now(),
+            ]
+            , [
+                'id' => 4,
+                'name' => 'Sale Telephone',
+                'role_id' => 'sale_telephone',
+                'created_at' => now(),
+            ]
+            , [
+                'id' => 5,
+                'name' => 'Sale Email',
+                'role_id' => 'sale_email',
+                'created_at' => now(),
+            ]
+            , [
+                'id' => 6,
+                'name' => 'Sale SMS',
+                'role_id' => 'sale_sms',
                 'created_at' => now(),
             ]
         ]);
@@ -294,19 +312,43 @@ class DatabaseSeeder extends Seeder
                 'created_at' => now(),
             ], [
                 'id' => 2,
-                'name' => 'leader',
+                'name' => 'Leader Sale',
                 'phone' => '0987654321',
-                'email' => 'leader@gmail.com',
-                'password' => Hash::make('leader@123'),
+                'email' => 'leader_sale@gmail.com',
+                'password' => Hash::make('123456'),
                 'role_id' => 2,
                 'created_at' => now(),
             ], [
                 'id' => 3,
-                'name' => 'Saler',
+                'name' => 'Leader Marketing',
                 'phone' => '1234567890',
-                'email' => 'sale@gmail.com',
-                'password' => Hash::make('sale@123'),
+                'email' => 'leader_marketing@gmail.com',
+                'password' => Hash::make('123456'),
                 'role_id' => 3,
+                'created_at' => now(),
+            ],[
+                'id' => 4,
+                'name' => 'Sale Telephone',
+                'phone' => '8405028495',
+                'email' => 'sale_telephone@gmail.com',
+                'password' => Hash::make('123456'),
+                'role_id' => 4,
+                'created_at' => now(),
+            ],[
+                'id' => 5,
+                'name' => 'Sale Email',
+                'phone' => '0194876593',
+                'email' => 'sale_email@gmail.com',
+                'password' => Hash::make('123456'),
+                'role_id' => 5,
+                'created_at' => now(),
+            ],[
+                'id' => 6,
+                'name' => 'Sale SMS',
+                'phone' => '8293817450',
+                'email' => 'sale_sms@gmail.com',
+                'password' => Hash::make('123456'),
+                'role_id' => 6,
                 'created_at' => now(),
             ]
         ]);

@@ -263,18 +263,18 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
                         {{-- Quản lý data khách hàng --}}
-                        <li class="nav-item ">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-address-card"></i>
-                                <p>
-                                    Khách hàng
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
+                        @if ($user->role_id == 1)
+                            <li class="nav-item ">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-address-card"></i>
+                                    <p>
+                                        Khách hàng
+                                        <i class="fas fa-angle-left right"></i>
+                                    </p>
+                                </a>
 
 
-                            <ul class="nav nav-treeview">
-                                @if ( $user->role_id == 1 ||  in_array('submit.list', $data))
+                                <ul class="nav nav-treeview">
                                     <li class="nav-item">
                                         <a href="{{ route('submit.list') }}" class="nav-link">
                                             <i class="nav-icon fas fa-copy"></i>
@@ -285,38 +285,34 @@
                                             <span class="badge badge-info right">{{ $countsm }}</span>
                                         </a>
                                     </li>
-                                @endif
-                                @if ( $user->role_id == 1 ||  in_array('submit.create', $data))
                                     <li class="nav-item">
                                         <a href="{{ route('submit.create') }}" class="nav-link">
                                             <i class="fas fa-plus nav-icon"></i>
                                             <p>Thêm mới</p>
                                         </a>
                                     </li>
-                                @endif
-                                @if ( $user->role_id == 1 ||  in_array('submit.list', $data))
                                     <li class="nav-item">
                                         <a href="#" class="nav-link">
                                             <i class="fas fa-users nav-icon"></i>
                                             <p>Phân quyền</p>
                                         </a>
                                     </li>
-                                @endif
-                            </ul>
-                        </li>
+                                </ul>
+                            </li>
+                        @endif
                         {{-- Quản lý tài khoản người dùng --}}
-                        <li class="nav-item ">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-user-circle"></i>
-                                <p>
-                                    Người dùng
-                                    <i class="fas fa-angle-left right"></i>
+                        @if ($user->role_id == 1)
+                            <li class="nav-item ">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-user-circle"></i>
+                                    <p>
+                                        Người dùng
+                                        <i class="fas fa-angle-left right"></i>
 
-                                </p>
-                            </a>
+                                    </p>
+                                </a>
 
-                            <ul class="nav nav-treeview">
-                                @if ( $user->role_id == 1 ||  in_array('users.index', $data))
+                                <ul class="nav nav-treeview">
                                     <li class="nav-item">
                                         <a href="{{ route('users.index') }}" class="nav-link">
                                             <i class="nav-icon fas fa-copy"></i>
@@ -330,8 +326,6 @@
                                             <span class="badge badge-info right">{{ $countem }}</span>
                                         </a>
                                     </li>
-                                @endif
-                                @if ( $user->role_id == 1 ||  in_array('users.create', $data))
                                     <li class="nav-item">
                                         <a href="{{ route('users.create') }}" class="nav-link">
                                             <i class="fas fa-plus nav-icon"></i>
@@ -339,44 +333,21 @@
                                             <p>Tạo mới</p>
                                         </a>
                                     </li>
-                                @endif
-                                {{-- <li class="nav-item">
-                                    <a href="{{ route('users.draft') }}" class="nav-link">
-                                        <i class="fas fa-file-signature nav-icon"></i>
-                                        <p>Bản nháp</p>
-                                        @php
-                                            $countemt = DB::table('table_emails')
-                                                ->whereNull('deleted_at')
-                                                ->where('status', 0)
-                                                ->count();
-                                        @endphp
-                                        <span class="badge badge-info right">{{ $countemt }}</span>
-                                    </a>
-                                </li> --}}
-                                {{-- <li class="nav-item">
-                                    <a href="{{ route('users.trashed') }}" class="nav-link">
-                                        <i class="fas fa-trash-alt nav-icon"></i>
-                                        <p>Thùng rác</p>
-                                        @php
-                                            $countemd = DB::table('table_emails')->whereNotNull('deleted_at')->count();
-                                        @endphp
-                                        <span class="badge badge-info right">{{ $countemd }}</span>
-                                    </a>
-                                </li> --}}
-                            </ul>
-                        </li>
+                                </ul>
+                            </li>
+                        @endif
                         {{-- Phân quyền người dùng --}}
-                        <li class="nav-item ">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-user-circle"></i>
-                                <p>
-                                    Phân quyền
-                                    <i class="fas fa-angle-left right"></i>
+                        @if ($user->role_id == 1)
+                            <li class="nav-item ">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-user-circle"></i>
+                                    <p>
+                                        Phân quyền
+                                        <i class="fas fa-angle-left right"></i>
 
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                @if ( $user->role_id == 1 ||  in_array('roles.index', $data))
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
                                     <li class="nav-item">
                                         <a href="{{ route('roles.index') }}" class="nav-link">
                                             <i class="nav-icon fas fa-copy"></i>
@@ -390,8 +361,6 @@
                                             <span class="badge badge-info right">{{ $countem }}</span>
                                         </a>
                                     </li>
-                                @endif
-                                @if ( $user->role_id == 1 ||  in_array('roles.create', $data))
                                     <li class="nav-item">
                                         <a href="{{ route('roles.create') }}" class="nav-link">
                                             <i class="fas fa-plus nav-icon"></i>
@@ -399,20 +368,20 @@
                                             <p>Tạo mới</p>
                                         </a>
                                     </li>
-                                @endif
-                            </ul>
-                        </li>
+                                </ul>
+                            </li>
+                        @endif
                         {{-- Quản lý mailbox --}}
-                        <li class="nav-item ">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon far fa-envelope"></i>
-                                <p>
-                                    Mailbox
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                @if ( $user->role_id == 1 ||  in_array('emails.index', $data))
+                        @if ($user->role_id == 1)
+                            <li class="nav-item ">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon far fa-envelope"></i>
+                                    <p>
+                                        Mailbox
+                                        <i class="fas fa-angle-left right"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
                                     <li class="nav-item">
                                         <a href="{{ route('emails.index') }}" class="nav-link">
                                             <i class="nav-icon fas fa-copy"></i>
@@ -426,8 +395,6 @@
                                             <span class="badge badge-info right">{{ $countem }}</span>
                                         </a>
                                     </li>
-                                @endif
-                                @if ( $user->role_id == 1 ||  in_array('emails.create', $data))
                                     <li class="nav-item">
                                         <a href="{{ route('emails.create') }}" class="nav-link">
                                             <i class="fas fa-plus nav-icon"></i>
@@ -435,8 +402,6 @@
                                             <p>Tạo mới</p>
                                         </a>
                                     </li>
-                                @endif
-                                @if ( $user->role_id == 1 ||  in_array('emails.draft', $data))
                                     <li class="nav-item">
                                         <a href="{{ route('emails.draft') }}" class="nav-link">
                                             <i class="fas fa-file-signature nav-icon"></i>
@@ -450,8 +415,6 @@
                                             <span class="badge badge-info right">{{ $countemt }}</span>
                                         </a>
                                     </li>
-                                @endif
-                                @if ( $user->role_id == 1 ||  in_array('emails.trashed', $data))
                                     <li class="nav-item">
                                         <a href="{{ route('emails.trashed') }}" class="nav-link">
                                             <i class="fas fa-trash-alt nav-icon"></i>
@@ -464,22 +427,22 @@
                                             <span class="badge badge-info right">{{ $countemd }}</span>
                                         </a>
                                     </li>
-                                @endif
 
-                            </ul>
-                        </li>
+                                </ul>
+                            </li>
+                        @endif
                         {{-- Quản lý smsbox --}}
 
-                        <li class="nav-item ">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon far fa-envelope"></i>
-                                <p>
-                                    SMS
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                @if ( $user->role_id == 1 ||  in_array('sms.index', $data))
+                        @if ($user->role_id == 1)
+                            <li class="nav-item ">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon far fa-envelope"></i>
+                                    <p>
+                                        SMS
+                                        <i class="fas fa-angle-left right"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
                                     <li class="nav-item">
                                         <a href="{{ route('sms.index') }}" class="nav-link">
                                             <i class="nav-icon fas fa-copy"></i>
@@ -493,8 +456,6 @@
                                             <span class="badge badge-info right">{{ $countem }}</span>
                                         </a>
                                     </li>
-                                @endif
-                                @if ( $user->role_id == 1 ||  in_array('sms.create', $data))
                                     <li class="nav-item">
                                         <a href="{{ route('sms.create') }}" class="nav-link">
                                             <i class="fas fa-plus nav-icon"></i>
@@ -502,8 +463,6 @@
                                             <p>Tạo mới</p>
                                         </a>
                                     </li>
-                                @endif
-                                @if ( $user->role_id == 1 ||  in_array('sms.draft', $data))
                                     <li class="nav-item">
                                         <a href="{{ route('sms.draft') }}" class="nav-link">
                                             <i class="fas fa-file-signature nav-icon"></i>
@@ -517,8 +476,6 @@
                                             <span class="badge badge-info right">{{ $countemt }}</span>
                                         </a>
                                     </li>
-                                @endif
-                                @if ( $user->role_id == 1 ||  in_array('sms.trashed', $data))
                                     <li class="nav-item">
                                         <a href="{{ route('sms.trashed') }}" class="nav-link">
                                             <i class="fas fa-trash-alt nav-icon"></i>
@@ -529,9 +486,9 @@
                                             <span class="badge badge-info right">{{ $countemd }}</span>
                                         </a>
                                     </li>
-                                @endif
 
-                            </ul>
+                                </ul>
+                        @endif
                         </li>
 
                     </ul>
@@ -613,21 +570,27 @@
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('dist') }}/js/demo.js"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="{{ asset('dist') }}/js/pages/dashboard.js"></script>
+    {{-- <script src="{{ asset('dist') }}/js/pages/dashboard.js"></script> --}}
     <!-- Page specific script -->
     <!-- DataTables -->
     <link rel="stylesheet" href="{{ asset('plugins') }}//datatables-bs4/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="{{ asset('plugins') }}/datatables-responsive/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="{{ asset('plugins') }}/datatables-buttons/css/buttons.bootstrap4.min.css">
-
-
+    @if (Auth::user()->role_id == 1)
+        <script>
+            $(function() {
+                $("#example1").DataTable({
+                    "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
+                });
+            });
+        </script>
+    @endif
     <script>
         $(function() {
             $("#example1").DataTable({
                 "responsive": true,
                 "lengthChange": true,
                 "autoWidth": false,
-                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
                 "language": {
                     "lengthMenu": "Hiển thị _MENU_ dòng",
                     "zeroRecords": "Không tìm thấy dòng nào",
@@ -668,6 +631,7 @@
             });
         });
     </script>
+
     <!-- Select2 -->
     <script src="{{ asset('plugins') }}/select2/js/select2.full.min.js"></script>
     <!-- Bootstrap4 Duallistbox -->

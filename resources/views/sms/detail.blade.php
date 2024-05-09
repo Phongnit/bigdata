@@ -27,7 +27,7 @@
                 <div class="row">
 
                     <div class="col-md-3">
-                        <a href="{{ route('emails.index') }}" class="btn btn-primary btn-block mb-3">Quay lại danh sách</a>
+                        <a href="{{ route('sms.index') }}" class="btn btn-primary btn-block mb-3">Quay lại danh sách</a>
 
                         <div class="card">
                             <div class="card-header">
@@ -42,9 +42,9 @@
                             <div class="card-body p-0">
                                 <ul class="nav nav-pills flex-column">
                                     <li class="nav-item active">
-                                        <a href="{{ route('emails.index') }}" class="nav-link">
+                                        <a href="{{ route('sms.index') }}" class="nav-link">
                                             @php
-                                                $count = DB::table('table_emails')->count();
+                                                $count = DB::table('table_sms')->count();
                                             @endphp
                                             <i class="fas fa-inbox"></i> Danh sách
                                             <span class="badge bg-primary float-right">{{ $count }}</span>
@@ -211,10 +211,10 @@
                             <!-- /.card-footer -->
                             <div class="card-footer">
                                 <div class="float-right">
-                                    <a href="{{ route('emails.send', ['id' => $sms->id]) }}" class="btn btn-default"><i
+                                    <a href="{{ route('sms.send', ['id' => $sms->id]) }}" class="btn btn-default"><i
                                             class="fa fa-filter"></i> Gửi theo bộ lọc</a>
 
-                                    <a href="{{ route('emails.sendall', ['id' => $sms->id]) }}"
+                                    <a href="{{ route('sms.sendall', ['id' => $sms->id]) }}"
                                         onclick="return confirm('Bạn có chắc muốn gửi tất cả không?');"class="btn btn-default"><i
                                             class="fas fa-share"></i> Gửi tất cả</a>
                                 </div>
@@ -223,7 +223,7 @@
                                 <button type="button" class="btn btn-default"><i class="fas fa-print"></i>
                                     In</button>
                                 <button type="button"
-                                    onclick="window.location.href='{{ route('emails.edit', ['id' => $sms->id]) }}'"
+                                    onclick="window.location.href='{{ route('sms.edit', ['id' => $sms->id]) }}'"
                                     class="btn btn-default"><i class="fa fa-wrench" aria-hidden="true"></i>
                                     Chỉnh sửa</button>
                             </div>

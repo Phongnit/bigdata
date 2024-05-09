@@ -111,7 +111,8 @@
                                                     <td class="mailbox-subject">{{$grant}}</td>
                                                     <td class="mailbox-subject">0</td>
                                                     {{-- <td class="mailbox-date">{{ $item->created_at->format('d/m/Y') }}</td> --}}
-                                                    <td><a href="{{ route('roles.edit', ['id' => $item->id]) }}"><i class="text-primary fas fa-edit"> Set Quyền</i></a>
+                                                    <td><a href="{{ route('roles.edit', ['id' => $item->id]) }}"><i class="text-primary fas fa-edit"> Set Quyền</i></a> ||
+                                                        <a href="{{ route('roles.delete', ['id' => $item->id]) }}"><i class="text-danger fas fa-trash"> Xóa</i></a>
                                                     </td>
                                                 </tr>
                                             @endforeach

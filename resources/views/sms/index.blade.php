@@ -4,13 +4,7 @@
 @endsection
 @section('main')
     <div class="content-wrapper">
-        @if (session('success'))
-            <div class="alert alert-success alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                <h5><i class="icon fas fa-check"></i> Thành công !</h5>
-                {{ session('success') }}
-            </div>
-        @endif
+       
         <!-- Content Header (Page header) -->
         <div class="content-header">
             <div class="container-fluid">
@@ -124,9 +118,9 @@
                                                     <td>{{ $sms->deleted_at == null ? 'Đã duyệt' : 'Đã xóa' }}</td>
                                                     <td class="mailbox-attachment"><i class="fas fa-paperclip"></i></td>
                                                     <td class="mailbox-date">{{ $sms->created_at->format('d/m/Y') }}</td>
-                                                    <td><a href="{{ route('emails.show', ['id' => $sms->id]) }}"><i class="text-success fas fa-eye"></i></a>
-                                                        <a href="{{ route('emails.edit', ['id' => $sms->id]) }}"><i class="text-primary fas fa-edit"></i></a>
-                                                        <a href="{{ route('emails.delete', ['id' => $sms->id]) }}"
+                                                    <td><a href="{{ route('sms.show', ['id' => $sms->id]) }}"><i class="text-success fas fa-eye"></i></a>
+                                                        <a href="{{ route('sms.edit', ['id' => $sms->id]) }}"><i class="text-primary fas fa-edit"></i></a>
+                                                        <a href="{{ route('sms.delete', ['id' => $sms->id]) }}"
                                                             onclick="return confirm('Bạn có chắc muốn xóa không?');"><i
                                                                 style="color: red;" class="fa fa-trash"
                                                                 aria-hidden="true"></i></a>

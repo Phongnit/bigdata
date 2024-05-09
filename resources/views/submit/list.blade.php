@@ -75,11 +75,12 @@
                                         <tr>
                                             <th>STT</th>
                                             <th>Họ tên</th>
-                                            <th>Số điện thoại</th>
-                                            <th>Email</th>
+                                            {{-- <th>Số điện thoại</th> --}}
+                                            {{-- <th>Email</th> --}}
                                             <th>Lời nhắn</th>
                                             <th>Lĩnh vực</th>
                                             <th>Quốc gia</th>
+                                            {{-- <th></th> --}}
                                             <th>Trạng thái</th>
                                             
                                         </tr>
@@ -89,11 +90,12 @@
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $submit->name }}</td>
-                                                <td>{{ $submit->phone }}</td>
-                                                <td>{{ $submit->email }}</td>
+                                                {{-- <td>{{ $submit->phone }}</td> --}}
+                                                {{-- <td>{{ $submit->email }}</td> --}}
                                                 <td>{{ $submit->description }}</td>
                                                 <td>{{ $submit->field->name }}</td>
                                                 <td>{{ $submit->country->name }}</td>
+                                                {{-- <td>{{ $submit->created_at->diffForHumans(null, true); }}</td> --}}
                                                 <td>
                                                     <ul
                                                         style="display: flex; list-style: none; justify-content: space-evenly; padding: 0;">

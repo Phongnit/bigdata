@@ -39,7 +39,7 @@ class RoleController extends Controller
         $roles->role_id = $request->role_id;
         $roles->save();
 
-        return redirect()->route('roles.edit',$roles->id);
+        return redirect()->route('roles.edit', $roles->id);
     }
 
     /**
@@ -62,8 +62,8 @@ class RoleController extends Controller
             ->select('table_permission.id')
             ->where('table_role.id', $id)
             ->get()->toArray();
-            $selectedPermissions = array_column($string, 'id');
-            // dd($selectedPermissions);
+        $selectedPermissions = array_column($string, 'id');
+        // dd($selectedPermissions);
 
         $roles = Role::find($id);
         $permission = Permission::all();
@@ -75,7 +75,7 @@ class RoleController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        RolePer::where('role_id',$id)->delete();
+        RolePer::where('role_id', $id)->delete();
         $permissions = $request->input('permissions');
 
         foreach ($permissions as $permissionId) {
@@ -104,6 +104,17 @@ class RoleController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $role = Role::find($id);
+        if ($role) {
+            if ($role) {
+                $role->delete();
+            } else {
+                $role = Role::withTrashed()->find($id);
+                $role->forceDelete();
+            }
+            return redirect()->back()->with('success', 'Đã xóa thành công !');
+        }
+        return redirect()->route('roles.index')
+            ->with('error', 'Bạn không thể xóa vai trò Administrator');
     }
 }
