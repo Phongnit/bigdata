@@ -43,7 +43,7 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                                             </div>
-                                            <input type="text" name="name" class="form-control" >
+                                            <input type="text" name="name" class="form-control">
                                         </div>
                                         <!-- /.input group -->
                                     </div>
@@ -56,8 +56,9 @@
                                             <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                                             </div>
-                                            <input type="text" name="day_create" class="form-control" data-inputmask-alias="datetime"
-                                                data-inputmask-inputformat="dd/mm/yyyy" data-mask>
+                                            <input type="text" name="day_create" class="form-control"
+                                                data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy"
+                                                data-mask>
                                         </div>
                                         <!-- /.input group -->
                                     </div>
@@ -114,7 +115,7 @@
                                             </div>
                                             <select name="fld_id" class="form-control">
                                                 @foreach ($field as $fields)
-                                                    <option value="{{$fields->id}}">{{$fields->name}}</option>
+                                                    <option value="{{ $fields->id }}">{{ $fields->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -127,17 +128,19 @@
 
                                         <div class="input-group">
                                             <div class="input-group-prepend">
-                                                <span class="input-group-text"><i class="fa fa-globe" aria-hidden="true"></i></span>
+                                                <span class="input-group-text"><i class="fa fa-globe"
+                                                        aria-hidden="true"></i></span>
                                             </div>
                                             <select name="cty_id" class="form-control">
                                                 @foreach ($country as $countrys)
-                                                    <option value="{{$countrys->id}}">{{$countrys->name}}</option>
+                                                    <option value="{{ $countrys->id }}">{{ $countrys->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                         <!-- /.input group -->
                                     </div>
-                                    <button type="submit" class="btn btn-block btn-success">Thêm Data  <i class="fa fa-plus" aria-hidden="true"></i></button>
+                                    <button type="submit" class="btn btn-block btn-success">Thêm Data <i class="fa fa-plus"
+                                            aria-hidden="true"></i></button>
                                 </form>
                             </div>
                             <!-- /.card-body -->
@@ -154,24 +157,51 @@
                                 <div id="actions" class="row">
                                     <div class="col-lg-12">
                                         <div class="btn-group w-100">
-                                            <span class="btn btn-success col fileinput-button dz-clickable">
-                                                <i class="fas fa-plus"></i>
-                                                <span>Add files</span>
-                                            </span>
-                                            <button type="submit" class="btn btn-primary col start">
-                                                <i class="fas fa-upload"></i>
-                                                <span>Start upload</span>
-                                            </button>
-                                            <button type="reset" class="btn btn-warning col cancel">
-                                                <i class="fas fa-times-circle"></i>
-                                                <span>Cancel upload</span>
-                                            </button>
+                                            <form action="{{ route('import') }}" method="POST"
+                                                enctype="multipart/form-data">
+                                                @csrf
+                                                <span class="btn btn-success col fileinput-button dz-clickable">
+                                                    <span>
+                                                        <label id="file-label" for="importdata"> <i class="fas fa-plus"></i> Add files</label>
+                                                        <label id="file-name" for="importdata"></label>
+                                                    </span>
+                                                </span>
+                                                <input style="display: none;" type="file" name="file" class="form-control"
+                                                    id="importdata">
+                                                <script>
+                                                    var fileInput = document.getElementById('importdata');
+                                                    var fileLabel = document.getElementById('file-label');
+                                                    var fileName = document.getElementById('file-name');
+
+                                                    fileInput.addEventListener('change', function(event) {
+                                                        var selectedFile = event.target.files[0];
+                                                        if (selectedFile) {
+                                                            fileLabel.style.display = 'none';
+                                                            fileName.textContent = selectedFile.name;
+                                                            fileName.style.display = 'inline';
+                                                        } else {
+                                                            fileLabel.style.display = 'inline';
+                                                            fileName.textContent = '';
+                                                            fileName.style.display = 'none';
+                                                        }
+                                                    });
+                                                </script>
+                                                <button type="submit" class="btn btn-primary col start">
+                                                    <i class="fas fa-upload"></i>
+                                                    <span>Import dữ liệu</span>
+                                                </button>
+                                                <button type="reset" class="btn btn-warning col cancel">
+                                                    <i class="fas fa-times-circle"></i>
+                                                    <span><a href="{{ route('export') }}">Export</a></span>
+                                                </button>
+                                            </form>
                                         </div>
                                     </div>
                                     <div class="col-lg-12 d-flex align-items-center">
                                         <div class="fileupload-process w-100">
                                             <div id="total-progress" class="progress progress-striped active"
-                                                role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                                                role="progressbar" aria-valuemin="0" aria-valuemax="100"
+                                                aria-valuenow="0">
                                                 <div class="progress-bar progress-bar-success" style="width:0%;"
                                                     data-dz-uploadprogress=""></div>
                                             </div>

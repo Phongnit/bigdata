@@ -2,10 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\SubmitExport;
+use App\Exports\UsersExport;
+use App\Imports\SubmitImport;
+use App\Imports\UsersImport;
 use App\Models\Country;
 use App\Models\Field;
 use App\Models\Submit;
+use Exception;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 use Ramsey\Uuid\Type\Integer;
 
 class SubmitController extends Controller
@@ -85,6 +91,53 @@ class SubmitController extends Controller
     {
         $submit = Submit::find($id);
         $submit->delete();
+        return redirect()->route('submit.list');
+    }
+
+    public function importExportView()
+    {
+        $field = Field::all();
+        $country = Country::all();
+        return view('submit.create', compact('field', 'country'));
+    }
+
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    public function export()
+    {
+        return Excel::download(new SubmitExport, 'users.xlsx');
+    }
+
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    public function import()
+    {
+        try {
+            Excel::import(new SubmitImport, request()->file('file'));
+        } catch (Exception $e) {
+            if (strpos($e->getMessage(), 'Duplicate entry') !== false) {
+                if (strpos($e->getMessage(), 'table_submit_phone_unique') !== false) {
+                    preg_match("/Duplicate entry '(.+)' for key 'table_submit\.table_submit_phone_unique'/", $e->getMessage(), $matches);
+                    if (isset($matches[1])) {
+                        $duplicatePhone = $matches[1]; // Lấy số điện thoại bị trùng từ thông báo lỗi
+                        // Thực hiện xử lý thông báo hoặc hành động cần thiết
+                        return redirect()->back()->with('error', "Số điện thoại $duplicatePhone đã tồn tại trong hệ thống.");
+                        // Chuyển hướng ngược lại trang trước đó và chuyển thông báo lỗi dưới dạng biến phiên
+                    }
+                } elseif (strpos($e->getMessage(), 'table_submit_email_unique') !== false) {
+                    preg_match("/Duplicate entry '(.+)' for key 'table_submit\.table_submit_email_unique'/", $e->getMessage(), $matches);
+                    if (isset($matches[1])) {
+                        $duplicateEmail = $matches[1]; // Lấy email bị trùng từ thông báo lỗi
+                        // Thực hiện xử lý thông báo hoặc hành động cần thiết
+                        return redirect()->back()->with('error', "Email $duplicateEmail đã tồn tại trong hệ thống.");
+                        // Chuyển hướng ngược lại trang trước đó và chuyển thông báo lỗi dưới dạng biến phiên
+                    }
+                }
+            }
+        }
+
         return redirect()->route('submit.list');
     }
 }

@@ -70,3 +70,13 @@ div#example1_length select.custom-select {
 .dt-buttons.btn-group.flex-wrap {
     margin-bottom: 8px;
 }
+.btn-group form>input, .btn-group form>span, .btn-group form>button {
+    flex-basis: 200px;
+    flex-grow: 1;
+}
+.btn-group form {
+    width: 100%;
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+}

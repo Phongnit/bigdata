@@ -38,6 +38,9 @@ Route::prefix('submit')->middleware('checklogin:all')->group(function () {
     Route::get('/edit/{id}', [SubmitController::class, 'edit'])->name('submit.edit');
     Route::put('/edit/{id}', [SubmitController::class, 'update'])->name('submit.edit');
     Route::get('/delete/{id}', [SubmitController::class, 'delete'])->name('submit.delete')->middleware('checklogin:leader_marketing,leader_sale');
+    Route::get('export', [SubmitController::class, 'export'])->name('export');
+    Route::get('importExportView', [SubmitController::class, 'importExportView']);
+    Route::post('import',  [SubmitController::class, 'import'])->name('import');
 });
 
 Route::prefix('emails')->middleware('checklogin:leader_marketing,administrator,sale_email')->group(function () {
