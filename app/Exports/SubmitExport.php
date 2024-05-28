@@ -14,4 +14,16 @@ class SubmitExport implements FromCollection
     {
         return Submit::all();
     }
+
+    public function headings(): array
+    {
+        return [
+            'Họ tên',
+            'Số điện thoại',
+            'Email',
+            'Lời nhắn',
+            'Mã lĩnh vực',
+            'Mã Khu vực',
+        ];
+    }
 }

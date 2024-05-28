@@ -356,14 +356,18 @@ class DatabaseSeeder extends Seeder
         DB::table('table_field')->insert([
             [
                 'id' => 1,
+                'name' => 'Chưa phân loại',
+                'created_at' => now(),
+            ],[
+                'id' => 2,
                 'name' => 'XKLĐ',
                 'created_at' => now(),
             ], [
-                'id' => 2,
+                'id' => 3,
                 'name' => 'Du học',
                 'created_at' => now(),
             ], [
-                'id' => 3,
+                'id' => 4,
                 'name' => 'Du lịch',
                 'created_at' => now(),
             ]
@@ -372,30 +376,34 @@ class DatabaseSeeder extends Seeder
         DB::table('table_country')->insert([
             [
                 'id' => 1,
+                'name' => 'Chưa phân loại',
+                'created_at' => now(),
+            ],[
+                'id' => 2,
                 'name' => 'Úc',
                 'created_at' => now(),
             ], [
-                'id' => 2,
+                'id' => 3,
                 'name' => 'Hàn Quốc',
                 'created_at' => now(),
             ], [
-                'id' => 3,
+                'id' => 4,
                 'name' => 'Nhật bản',
                 'created_at' => now(),
             ], [
-                'id' => 4,
+                'id' => 5,
                 'name' => 'Mỹ',
                 'created_at' => now(),
             ], [
-                'id' => 5,
+                'id' => 6,
                 'name' => 'Pháp',
                 'created_at' => now(),
             ], [
-                'id' => 6,
+                'id' => 7,
                 'name' => 'Đức',
                 'created_at' => now(),
             ], [
-                'id' => 7,
+                'id' => 8,
                 'name' => 'Trung Quốc',
                 'created_at' => now(),
             ]
@@ -416,7 +424,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Nguyễn thị ngọc bích',
                 'email' => 'Ngocbichnguyen2412@gmail.com',
                 'description' => 'Xkld ang Đức',
-                'fld_id' => '1',
+                'fld_id' => '4',
                 'cty_id' => '6',
                 'created_at' => now(),
             ],
@@ -425,7 +433,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'nguyễn đình đoàn',
                 'email' => 'dinhdoancute.91@yahoo.com',
                 'description' => 'Tôi đang muốn tìm hiểu kỹ hơn về việc đi lao động New Zealand, mong các bạn liên hệ tư vấn kỹ hơn giúp tôi về thủ tục và chi phí lao động ở nước này với ạ. Xin cảm ơn',
-                'fld_id' => '1',
+                'fld_id' => '4',
                 'cty_id' => '6',
                 'created_at' => now(),
             ],
@@ -434,7 +442,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Vũ thị thảo thuý',
                 'email' => 'eglover@hotmail.com',
                 'description' => '"Xklđ mỹ khó không ạ  Cần điều kiện ntn và  chi phí nhiều không ạ  Và công việc nó là những công việc gì v ạ "',
-                'fld_id' => '1',
+                'fld_id' => '4',
                 'cty_id' => '5',
                 'created_at' => now(),
             ],
@@ -461,7 +469,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Nguyen Phuong',
                 'email' => 'serena.gottlieb@yahoo.com',
                 'description' => 'Tư vấn mua nhà đất ở Canada cho người chưa định cư',
-                'fld_id' => '1',
+                'fld_id' => '4',
                 'cty_id' => '7',
                 'created_at' => now(),
             ],
@@ -471,7 +479,7 @@ class DatabaseSeeder extends Seeder
                 'email' => 'Tranquangthuong1968@gamil.com',
                 'description' => 'Qua duc di lam an',
                 'fld_id' => '2',
-                'cty_id' => '1',
+                'cty_id' => '8',
                 'created_at' => now(),
             ],
             [
@@ -479,7 +487,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Trần Thị ánh Tuyết',
                 'email' => 'aniyah.lebsack@yahoo.com',
                 'description' => 'Nhân viên buồn phòng',
-                'fld_id' => '1',
+                'fld_id' => '4',
                 'cty_id' => '6',
                 'created_at' => now(),
             ],
@@ -495,8 +503,8 @@ class DatabaseSeeder extends Seeder
             $name = $faker->name;
             $email = $faker->email;
             $description = $faker->sentence;
-            $fld_id = $faker->numberBetween(1, 3);
-            $cty_id = $faker->numberBetween(1, 7);
+            $fld_id = $faker->numberBetween(2, 4);
+            $cty_id = $faker->numberBetween(2, 8);
             $created_at = Carbon::now()->subDays($faker->numberBetween(1, 30));
 
 

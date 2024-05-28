@@ -192,7 +192,7 @@
                                                 </button>
                                                 <button type="reset" class="btn btn-warning col cancel">
                                                     <i class="fas fa-times-circle"></i>
-                                                    <span><a href="{{ route('export') }}">Export</a></span>
+                                                    <span><a href="{{ route('submit.create') }}">Cancel</a></span>
                                                 </button>
                                             </form>
                                         </div>

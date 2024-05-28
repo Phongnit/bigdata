@@ -116,6 +116,7 @@ class SubmitController extends Controller
     {
         try {
             Excel::import(new SubmitImport, request()->file('file'));
+            return redirect()->route('submit.list')->with('success', 'Import dữ liệu thành công');
         } catch (Exception $e) {
             if (strpos($e->getMessage(), 'Duplicate entry') !== false) {
                 if (strpos($e->getMessage(), 'table_submit_phone_unique') !== false) {
@@ -137,7 +138,7 @@ class SubmitController extends Controller
                 }
             }
         }
+        return redirect()->back()->with('error', $e->getMessage());
 
-        return redirect()->route('submit.list');
     }
 }

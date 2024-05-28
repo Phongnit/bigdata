@@ -16,12 +16,12 @@ class SubmitImport implements ToModel
     public function model(array $row)
     {
         return new Submit([
-            'name'     => $row[0],
-            'phone'     => $row[1],
-            'email'    => $row[2],
-            'description' => $row[3],
-            'fld_id' => empty($row[4]) ? 0 : $row[4],
-            'cty_id' => empty($row[5]) ? 0 : $row[5],
+            'name'     => empty($row[0]) ? 'null' : $row[0],
+            'phone'     => empty($row[1]) ? 'null' : $row[1],
+            'email'    => empty($row[2]) ? 'null' : $row[2],
+            'description' => empty($row[3]) ? 'null' : $row[3],
+            'fld_id' => empty($row[4]) ? 1 : $row[4],
+            'cty_id' => empty($row[5]) ? 1 : $row[5],
         ]);
     }
 }
